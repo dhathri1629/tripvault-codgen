@@ -1,0 +1,40 @@
+.trip-list {
+
+    width:90%;
+
+    margin:50px auto;
+
+    text-align:center;
+
+}
+
+
+
+.trip-list h2 {
+
+    font-size:38px;
+
+    color:#111827;
+
+    margin-bottom:40px;
+
+}
+
+
+
+.trip-grid {
+
+
+    display:grid;
+
+    grid-template-columns:
+
+    repeat(auto-fit,minmax(330px,1fr));
+
+
+    gap:35px;
+
+
+    justify-content:center;
+
+}
