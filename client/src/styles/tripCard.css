@@ -1,221 +1,136 @@
 .trip-card {
-
-    background:white;
-
-    width:100%;
-
-    max-width:380px;
-
-    margin:auto;
-
-    border-radius:22px;
-
-    overflow:hidden;
-
-    box-shadow:0 10px 30px rgba(0,0,0,0.12);
-
-    transition:0.3s ease;
-
+    background: white;
+    width: 100%;
+    max-width: 380px;
+    margin: auto;
+    border-radius: 22px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+    transition: 0.3s ease;
 }
-
-
 
 .trip-card:hover {
-
-    transform:translateY(-8px);
-
-    box-shadow:0 15px 35px rgba(0,0,0,0.18);
-
+    transform: translateY(-8px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.18);
 }
-
 
 
 /* Trip Image */
 
 .trip-image {
-
-    height:220px;
-
-    width:100%;
-
-    overflow:hidden;
-
+    height: 220px;
+    width: 100%;
+    overflow: hidden;
 }
-
-
 
 .trip-image img {
-
-    width:100%;
-
-    height:100%;
-
-    object-fit:cover;
-
-    transition:0.4s ease;
-
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: 0.4s ease;
 }
-
-
 
 .trip-card:hover .trip-image img {
-
-    transform:scale(1.08);
-
+    transform: scale(1.08);
 }
-
-
-
 
 
 /* Trip Content */
 
 .trip-content {
-
-    padding:20px;
-
-    text-align:center;
-
+    padding: 20px;
+    text-align: center;
 }
-
-
 
 .trip-content h3 {
-
-    font-size:22px;
-
-    color:#111827;
-
-    margin-bottom:12px;
-
-    text-transform:capitalize;
-
+    font-size: 22px;
+    color: #111827;
+    margin-bottom: 12px;
+    text-transform: capitalize;
 }
-
-
 
 .trip-content p {
-
-    color:#6b7280;
-
-    margin:12px 0;
-
-    font-size:15px;
-
-    line-height:1.5;
-
+    color: #6b7280;
+    margin: 12px 0;
+    font-size: 15px;
+    line-height: 1.5;
 }
-
-
 
 .trip-content svg {
-
-    color:#2563eb;
-
+    color: #2563eb;
 }
-
-
-
 
 
 /* Date */
 
 .trip-date {
-
-    font-size:14px;
-
+    font-size: 14px;
 }
-
-
-
 
 
 /* Action Buttons */
 
 .trip-actions {
-
-    display:flex;
-
-    justify-content:center;
-
-    gap:15px;
-
-    margin-top:20px;
-
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
 }
-
-
 
 .trip-actions button {
-
-    width:42px;
-
-    height:42px;
-
-    border:none;
-
-    border-radius:50%;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    cursor:pointer;
-
-    font-size:16px;
-
-    transition:0.3s;
-
+    width: 42px;
+    height: 42px;
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 16px;
+    transition: 0.3s;
 }
-
-
 
 .trip-actions button:hover {
-
-    transform:scale(1.1);
-
+    transform: scale(1.1);
 }
-
-
-
 
 
 /* Like Button */
 
 .like-btn {
-
-    background:#fee2e2;
-
-    color:#ef4444;
-
+    background: #fee2e2;
+    color: #ef4444;
 }
 
 
+/* Liked Button */
 
+.like-btn.liked {
+    background: #ef4444;
+    color: white;
+    transform: scale(1.1);
+}
+
+
+/* Prevent disabled button from looking broken */
+
+.like-btn:disabled {
+    cursor: wait;
+    opacity: 0.7;
+}
 
 
 /* Edit Button */
 
 .edit-btn {
-
-    background:#dbeafe;
-
-    color:#2563eb;
-
+    background: #dbeafe;
+    color: #2563eb;
 }
-
-
-
 
 
 /* Delete Button */
 
 .delete-btn {
-
-    background:#f3f4f6;
-
-    color:#374151;
-
+    background: #f3f4f6;
+    color: #374151;
 }

@@ -1,0 +1,350 @@
+/* ========================================
+   TRIPVAULT - REGISTER PAGE
+======================================== */
+
+.register-page {
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 30px 20px;
+
+    background:
+        linear-gradient(
+            rgba(0, 0, 0, 0.30),
+            rgba(0, 0, 0, 0.30)
+        ),
+        url("https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=1920&q=85");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    box-sizing: border-box;
+}
+
+
+/* ========================================
+   REGISTER CONTAINER
+======================================== */
+
+.register-card {
+    width: 100%;
+    max-width: 450px;
+
+    padding: 35px 40px;
+
+    background: rgba(255, 255, 255, 0.12);
+
+    border: 1px solid rgba(255, 255, 255, 0.35);
+
+    border-radius: 22px;
+
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+
+    box-shadow:
+        0 20px 50px rgba(0, 0, 0, 0.25);
+
+    box-sizing: border-box;
+}
+
+
+/* ========================================
+   HEADER
+======================================== */
+
+.register-header {
+    text-align: center;
+
+    margin-bottom: 28px;
+}
+
+
+/* Logo */
+
+.register-logo {
+    width: 62px;
+    height: 62px;
+
+    margin: 0 auto 15px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(192, 132, 87, 0.95);
+
+    color: white;
+
+    border-radius: 18px;
+
+    font-size: 27px;
+
+    box-shadow:
+        0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+
+/* Heading */
+
+.register-header h1 {
+    margin: 0;
+
+    color: #ffffff;
+
+    font-size: 29px;
+
+    font-weight: 700;
+
+    text-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.35);
+}
+
+
+/* Subtitle */
+
+.register-header p {
+    margin-top: 8px;
+
+    color: #ffffff;
+
+    font-size: 14px;
+
+    line-height: 1.5;
+
+    text-shadow:
+        0 1px 5px rgba(0, 0, 0, 0.4);
+}
+
+
+/* ========================================
+   FORM
+======================================== */
+
+.register-form {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 18px;
+}
+
+
+/* Form Group */
+
+.register-group {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 7px;
+}
+
+
+/* Labels */
+
+.register-group label {
+    color: #ffffff;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    text-shadow:
+        0 1px 4px rgba(0, 0, 0, 0.4);
+}
+
+
+/* ========================================
+   INPUTS
+======================================== */
+
+.register-group input {
+    width: 100%;
+
+    padding: 14px 16px;
+
+    border: 1px solid rgba(255, 255, 255, 0.6);
+
+    border-radius: 11px;
+
+    background: rgba(255, 255, 255, 0.88);
+
+    color: #1f2937;
+
+    font-size: 15px;
+
+    outline: none;
+
+    box-sizing: border-box;
+
+    transition: 0.25s ease;
+}
+
+
+.register-group input:focus {
+    background: #ffffff;
+
+    border-color: #ffffff;
+
+    box-shadow:
+        0 0 0 3px rgba(255, 255, 255, 0.2);
+}
+
+
+.register-group input::placeholder {
+    color: #6b7280;
+}
+
+
+/* ========================================
+   REGISTER BUTTON
+======================================== */
+
+.register-button {
+    width: 100%;
+
+    padding: 14px;
+
+    margin-top: 5px;
+
+    border: none;
+
+    border-radius: 11px;
+
+    background: #c08457;
+
+    color: white;
+
+    font-size: 16px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.3s ease;
+
+    box-shadow:
+        0 8px 20px rgba(0, 0, 0, 0.18);
+}
+
+
+.register-button:hover {
+    background: #a9683e;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 10px 25px rgba(0, 0, 0, 0.25);
+}
+
+
+.register-button:active {
+    transform: translateY(0);
+}
+
+
+.register-button:disabled {
+    opacity: 0.7;
+
+    cursor: not-allowed;
+
+    transform: none;
+}
+
+
+/* ========================================
+   LOGIN LINK
+======================================== */
+
+.register-login {
+    text-align: center;
+
+    margin-top: 24px;
+
+    color: #ffffff;
+
+    font-size: 14px;
+
+    text-shadow:
+        0 1px 4px rgba(0, 0, 0, 0.4);
+}
+
+
+.register-login a {
+    color: #ffffff;
+
+    font-weight: 700;
+
+    text-decoration: none;
+
+    transition: 0.2s ease;
+}
+
+
+.register-login a:hover {
+    color: #f5d0b5;
+
+    text-decoration: underline;
+}
+
+
+/* ========================================
+   MOBILE
+======================================== */
+
+@media (max-width: 600px) {
+
+    .register-page {
+        padding: 20px 15px;
+
+        background-position: center;
+
+        background-attachment: scroll;
+    }
+
+
+    .register-card {
+        padding: 32px 24px;
+
+        border-radius: 20px;
+    }
+
+
+    .register-header h1 {
+        font-size: 25px;
+    }
+
+
+    .register-logo {
+        width: 56px;
+        height: 56px;
+
+        font-size: 24px;
+    }
+}
+
+
+/* ========================================
+   SMALL MOBILE
+======================================== */
+
+@media (max-width: 380px) {
+
+    .register-card {
+        padding: 28px 18px;
+    }
+
+
+    .register-header h1 {
+        font-size: 23px;
+    }
+
+
+    .register-header p {
+        font-size: 13px;
+    }
+}

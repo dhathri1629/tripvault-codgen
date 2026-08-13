@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import "../styles/login.css";
 
 function Login() {
   const navigate = useNavigate();
@@ -26,64 +27,72 @@ function Login() {
         formData
       );
 
+      // Store JWT token
       localStorage.setItem("token", res.data.token);
+
+      // Get logged-in user information
+      const userRes = await axios.get(
+        "http://localhost:5000/api/auth/me",
+        {
+          headers: {
+            Authorization: `Bearer ${res.data.token}`,
+          },
+        }
+      );
+
+      // Store user information
+      localStorage.setItem("name", userRes.data.name);
+      localStorage.setItem("email", userRes.data.email);
 
       alert("Login Successful!");
 
       navigate("/dashboard");
 
     } catch (error) {
-      alert(error.response?.data?.message || "Login failed");
+      console.error("LOGIN ERROR:", error);
+
+      alert(
+        error.response?.data?.message ||
+        "Login failed"
+      );
     }
   };
 
   return (
-    <div
-      style={{
-        maxWidth: "400px",
-        margin: "50px auto",
-        padding: "30px",
-        border: "1px solid #ddd",
-        borderRadius: "10px",
-      }}
-    >
-      <h2 style={{ textAlign: "center" }}>Login</h2>
+    <div className="login-page">
 
-      <form onSubmit={handleSubmit}>
-        <input
-          type="email"
-          name="email"
-          placeholder="Enter Email"
-          value={formData.email}
-          onChange={handleChange}
-          required
-          style={{ width: "100%", padding: "10px", marginBottom: "15px" }}
-        />
+      <div className="login-card">
 
-        <input
-          type="password"
-          name="password"
-          placeholder="Enter Password"
-          value={formData.password}
-          onChange={handleChange}
-          required
-          style={{ width: "100%", padding: "10px", marginBottom: "20px" }}
-        />
+        <h2>Welcome Back ✈️</h2>
 
-        <button
-          type="submit"
-          style={{
-            width: "100%",
-            padding: "10px",
-            backgroundColor: "#007bff",
-            color: "#fff",
-            border: "none",
-            cursor: "pointer",
-          }}
-        >
-          Login
-        </button>
-      </form>
+        <form onSubmit={handleSubmit}>
+
+          <input
+            type="email"
+            name="email"
+            placeholder="Enter Email"
+            value={formData.email}
+            onChange={handleChange}
+            required
+          />
+
+          <input
+            type="password"
+            name="password"
+            placeholder="Enter Password"
+            value={formData.password}
+            onChange={handleChange}
+            required
+          />
+
+          <button type="submit">
+            Login
+          </button>
+
+        </form>
+
+      </div>
+
     </div>
   );
 }

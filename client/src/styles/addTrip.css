@@ -1,92 +1,345 @@
-/* Page Background */
+/* ========================================
+   TRIPVAULT - ADD NEW JOURNEY
+   Professional Clean Design
+======================================== */
 
 .addtrip-container {
-  min-height: 100vh;
-  background: #f5f7fb;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 40px;
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+
+    padding: 55px 20px;
+
+    box-sizing: border-box;
+
+    background: linear-gradient(
+        135deg,
+        #faf8f5 0%,
+        #f5efe9 50%,
+        #fbf9f7 100%
+    );
 }
 
-/* Card */
+
+/* ========================================
+   MAIN CARD
+======================================== */
 
 .addtrip-card {
-  width: 100%;
-  max-width: 700px;
-  background: #ffffff;
-  padding: 35px;
-  border-radius: 18px;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+    width: 100%;
+    max-width: 720px;
+
+    padding: 42px 48px;
+
+    background: #ffffff;
+
+    border: 1px solid #eee6df;
+
+    border-radius: 22px;
+
+    box-shadow:
+        0 12px 35px rgba(100, 75, 55, 0.09);
+
+    box-sizing: border-box;
 }
+
+
+/* ========================================
+   HEADER
+======================================== */
 
 .addtrip-card h1 {
-  color: #2563eb;
-  margin-bottom: 8px;
+    margin: 0;
+
+    text-align: center;
+
+    color: #5f4636;
+
+    font-size: 30px;
+
+    font-weight: 700;
+
+    letter-spacing: -0.3px;
 }
 
-.addtrip-card p {
-  color: #6b7280;
-  margin-bottom: 30px;
+
+.addtrip-card > p {
+    margin: 10px 0 32px;
+
+    text-align: center;
+
+    color: #8b7a6b;
+
+    font-size: 15px;
 }
 
-/* Form */
+
+/* ========================================
+   FORM
+======================================== */
+
+.addtrip-card form {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 20px;
+}
+
+
+/* ========================================
+   FORM GROUP
+======================================== */
 
 .form-group {
-  margin-bottom: 20px;
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 8px;
 }
+
+
+/* ========================================
+   LABEL
+======================================== */
 
 .form-group label {
-  display: block;
-  margin-bottom: 8px;
-  font-weight: 600;
-  color: #374151;
+    color: #5f4636;
+
+    font-size: 14px;
+
+    font-weight: 600;
 }
+
+
+/* ========================================
+   INPUT / TEXTAREA / SELECT
+======================================== */
 
 .form-group input,
-.form-group textarea {
-  width: 100%;
-  padding: 14px;
-  border: 1px solid #d1d5db;
-  border-radius: 10px;
-  font-size: 15px;
-  outline: none;
-  transition: 0.3s;
+.form-group textarea,
+.form-group select {
+    width: 100%;
+
+    padding: 13px 15px;
+
+    border: 1px solid #ded6ce;
+
+    border-radius: 10px;
+
+    background: #fffdfb;
+
+    color: #3f342c;
+
+    font-family: inherit;
+
+    font-size: 15px;
+
+    outline: none;
+
+    box-sizing: border-box;
+
+    transition:
+        border-color 0.25s ease,
+        box-shadow 0.25s ease,
+        background 0.25s ease;
 }
 
-.form-group textarea {
-  resize: vertical;
-}
+
+/* ========================================
+   FOCUS
+======================================== */
 
 .form-group input:focus,
-.form-group textarea:focus {
-  border-color: #2563eb;
-  box-shadow: 0 0 8px rgba(37, 99, 235, 0.2);
+.form-group textarea:focus,
+.form-group select:focus {
+    background: #ffffff;
+
+    border-color: #c79a6e;
+
+    box-shadow:
+        0 0 0 3px rgba(199, 154, 110, 0.13);
 }
 
-/* File Upload */
 
-input[type="file"] {
-  border: none;
-  padding: 10px 0;
+/* ========================================
+   PLACEHOLDER
+======================================== */
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: #aaa099;
 }
 
-/* Button */
+
+/* ========================================
+   TEXTAREA
+======================================== */
+
+.form-group textarea {
+    min-height: 120px;
+
+    resize: vertical;
+
+    line-height: 1.6;
+}
+
+
+/* ========================================
+   DATE INPUT
+======================================== */
+
+.form-group input[type="date"] {
+    cursor: pointer;
+}
+
+
+/* ========================================
+   SELECT
+======================================== */
+
+.form-group select {
+    cursor: pointer;
+}
+
+
+/* ========================================
+   PHOTO INPUT
+======================================== */
+
+.form-group input[type="file"] {
+    padding: 10px;
+
+    background: #faf8f5;
+
+    color: #75675c;
+
+    cursor: not-allowed;
+}
+
+
+/* ========================================
+   PHOTO INFORMATION
+======================================== */
+
+.form-group small {
+    color: #9a897b !important;
+
+    font-size: 12px;
+}
+
+
+/* ========================================
+   SAVE BUTTON
+======================================== */
 
 .save-btn {
-  width: 100%;
-  padding: 15px;
-  background: #2563eb;
-  color: white;
-  border: none;
-  border-radius: 10px;
-  font-size: 17px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: 0.3s;
+    width: 100%;
+
+    margin-top: 8px;
+
+    padding: 14px 20px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: #c08457;
+
+    color: #ffffff;
+
+    font-family: inherit;
+
+    font-size: 16px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background 0.25s ease,
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
 }
 
+
+/* ========================================
+   BUTTON HOVER
+======================================== */
+
 .save-btn:hover {
-  background: #1d4ed8;
-  transform: translateY(-2px);
+    background: #a9683e;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 8px 18px rgba(169, 104, 62, 0.22);
+}
+
+
+/* ========================================
+   BUTTON ACTIVE
+======================================== */
+
+.save-btn:active {
+    transform: translateY(0);
+
+    box-shadow: none;
+}
+
+
+/* ========================================
+   RESPONSIVE
+======================================== */
+
+@media (max-width: 700px) {
+
+    .addtrip-container {
+        padding: 35px 15px;
+    }
+
+    .addtrip-card {
+        padding: 32px 25px;
+
+        border-radius: 18px;
+    }
+
+    .addtrip-card h1 {
+        font-size: 26px;
+    }
+}
+
+
+/* ========================================
+   SMALL MOBILE
+======================================== */
+
+@media (max-width: 420px) {
+
+    .addtrip-container {
+        padding: 25px 12px;
+    }
+
+    .addtrip-card {
+        padding: 27px 18px;
+    }
+
+    .addtrip-card h1 {
+        font-size: 23px;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+        padding: 12px;
+
+        font-size: 14px;
+    }
+
+    .save-btn {
+        padding: 13px;
+    }
 }

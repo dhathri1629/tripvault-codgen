@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
-import "../styles/auth.css";
+import { FaPlaneDeparture } from "react-icons/fa";
+import "../styles/register.css";
 
 function Register() {
   const navigate = useNavigate();
@@ -24,111 +25,143 @@ function Register() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    setLoading(true);
-
     try {
-      const response = await axios.post(
+      setLoading(true);
+
+      await axios.post(
         "http://localhost:5000/api/auth/register",
         formData
       );
 
-      console.log("Success:", response.data);
-
-      alert("Registration Successful!");
-
-      setFormData({
-        name: "",
-        email: "",
-        password: "",
-      });
+      alert("🎉 Account created successfully!");
 
       navigate("/login");
+
     } catch (error) {
-      console.error("Registration Error:", error);
+      console.error("REGISTER ERROR:", error);
 
-      if (error.response) {
-        console.log("Response Data:", error.response.data);
-        console.log("Status:", error.response.status);
+      alert(
+        error.response?.data?.message ||
+        "Registration failed"
+      );
 
-        alert(
-          error.response.data.message ||
-          JSON.stringify(error.response.data)
-        );
-      } else if (error.request) {
-        alert(
-          "Cannot connect to the server. Make sure the backend is running on port 5000."
-        );
-      } else {
-        alert(error.message);
-      }
+    } finally {
+      setLoading(false);
     }
-
-    setLoading(false);
   };
 
   return (
-    <div className="auth-container">
-      <div className="auth-card">
+    <div className="register-page">
 
-        <div className="logo">✈️</div>
+      <div className="register-card">
 
-        <h1 className="title">TripVault</h1>
+        {/* Header */}
+        <div className="register-header">
 
-        <p className="subtitle">
-          Capture your travel memories forever
-        </p>
+          <div className="register-logo">
+            <FaPlaneDeparture />
+          </div>
 
-        <form onSubmit={handleSubmit}>
+          <h1>Create Your Account</h1>
 
-          <div className="input-group">
+          <p>
+            Start saving your unforgettable journeys.
+          </p>
+
+        </div>
+
+
+        {/* Form */}
+        <form
+          className="register-form"
+          onSubmit={handleSubmit}
+        >
+
+          {/* Name */}
+          <div className="register-group">
+
+            <label>
+              Full Name
+            </label>
+
             <input
               type="text"
               name="name"
-              placeholder="👤 Full Name"
+              placeholder="Enter your name"
               value={formData.name}
               onChange={handleChange}
               required
             />
+
           </div>
 
-          <div className="input-group">
+
+          {/* Email */}
+          <div className="register-group">
+
+            <label>
+              Email Address
+            </label>
+
             <input
               type="email"
               name="email"
-              placeholder="📧 Email Address"
+              placeholder="Enter your email"
               value={formData.email}
               onChange={handleChange}
               required
             />
+
           </div>
 
-          <div className="input-group">
+
+          {/* Password */}
+          <div className="register-group">
+
+            <label>
+              Password
+            </label>
+
             <input
               type="password"
               name="password"
-              placeholder="🔒 Password"
+              placeholder="Create a password"
               value={formData.password}
               onChange={handleChange}
+              minLength="6"
               required
             />
+
           </div>
 
+
+          {/* Button */}
           <button
-            className="btn"
             type="submit"
+            className="register-button"
             disabled={loading}
           >
-            {loading ? "Registering..." : "Register"}
+            {loading
+              ? "Creating Account..."
+              : "Create Account ✈️"}
           </button>
 
         </form>
 
-        <div className="link">
+
+        {/* Login Link */}
+        <div className="register-login">
+
           Already have an account?{" "}
-          <Link to="/login">Login</Link>
+
+          <Link to="/login">
+            Login
+          </Link>
+
         </div>
 
       </div>
+
     </div>
   );
 }

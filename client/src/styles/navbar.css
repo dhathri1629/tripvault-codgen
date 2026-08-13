@@ -1,85 +1,191 @@
-/* Navbar */
+/* ========================================
+   TRIPVAULT NAVBAR
+======================================== */
 
 .navbar {
-  height: 70px;
-  background: #ffffff;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 40px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  position: sticky;
-  top: 0;
-  z-index: 100;
+    width: 100%;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 18px 45px;
+
+    background: #ffffff;
+
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.06);
+
+    box-sizing: border-box;
+
+    position: relative;
+
+    z-index: 100;
 }
 
-/* Logo */
+
+/* ========================================
+   LOGO
+======================================== */
 
 .logo {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 24px;
-  font-weight: 700;
-  color: #2563eb;
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    color: #1f2937;
+
+    font-size: 24px;
+
+    font-weight: 700;
 }
 
 .logo-icon {
-  font-size: 28px;
+    color: #c08457;
+
+    font-size: 25px;
 }
 
-/* Right Side */
+
+/* ========================================
+   RIGHT SIDE
+======================================== */
 
 .nav-right {
-  display: flex;
-  align-items: center;
-  gap: 25px;
+    display: flex;
+
+    align-items: center;
+
+    gap: 20px;
 }
 
-/* Notification Icon */
+
+/* ========================================
+   NOTIFICATION
+======================================== */
 
 .nav-icon {
-  font-size: 22px;
-  color: #4b5563;
-  cursor: pointer;
-  transition: 0.3s;
+    font-size: 20px;
+
+    color: #6b7280;
+
+    cursor: pointer;
+
+    transition: 0.25s ease;
 }
 
 .nav-icon:hover {
-  color: #2563eb;
+    color: #c08457;
+
+    transform: scale(1.08);
 }
 
-/* User */
+
+/* ========================================
+   PROFILE
+   ONLY THIS PART IS CHANGED
+======================================== */
 
 .user-info {
-  display: flex;
-  align-items: center;
-  gap: 8px;
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    padding: 7px 13px;
+
+    /* Soft cream */
+    background: #fffaf5 !important;
+
+    /* Light beige border */
+    border: 1px solid #ead8c8 !important;
+
+    border-radius: 25px;
+
+    cursor: pointer;
+
+    transition: 0.25s ease;
 }
+
+
+/* Profile Hover */
+
+.user-info:hover {
+    background: #fdf4eb !important;
+
+    border-color: #dfc5ae !important;
+
+    transform: translateY(-1px);
+}
+
+
+/* ========================================
+   PROFILE ICON
+======================================== */
 
 .user-icon {
-  font-size: 30px;
-  color: #2563eb;
+    color: #c79a6e !important;
+
+    font-size: 28px;
 }
+
+
+/* ========================================
+   USERNAME
+======================================== */
 
 .user-info span {
-  font-size: 16px;
-  font-weight: 600;
-  color: #1f2937;
+    color: #6b5140 !important;
+
+    font-size: 15px;
+
+    font-weight: 600;
+
+    max-width: 140px;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+    white-space: nowrap;
 }
 
-/* Mobile */
 
-@media (max-width: 768px) {
-  .navbar {
-    padding: 0 20px;
-  }
+/* ========================================
+   MOBILE
+======================================== */
 
-  .logo span {
-    font-size: 20px;
-  }
+@media (max-width: 600px) {
 
-  .user-info span {
-    display: none;
-  }
+    .navbar {
+        padding: 15px 20px;
+    }
+
+    .logo {
+        font-size: 20px;
+    }
+
+    .logo-icon {
+        font-size: 21px;
+    }
+
+    .nav-right {
+        gap: 12px;
+    }
+
+    .user-info {
+        padding: 6px 10px;
+    }
+
+    .user-info span {
+        max-width: 80px;
+
+        font-size: 13px;
+    }
+
+    .user-icon {
+        font-size: 25px;
+    }
 }
