@@ -1,20 +1,28 @@
 import React, { useState } from "react";
+
 import {
     FaMapMarkerAlt,
     FaCalendarAlt,
     FaHeart,
     FaEdit,
-    FaTrash
+    FaTrash,
+    FaCamera
 } from "react-icons/fa";
+
 import { useNavigate } from "react-router-dom";
+
 import {
     deleteTrip,
     toggleLike
 } from "../services/tripService";
+
 import "../styles/tripCard.css";
 
-function TripCard({ trip, onDelete }) {
-
+function TripCard({
+    trip,
+    onDelete,
+    onLikeChange
+}) {
     const navigate = useNavigate();
 
     const [isLiked, setIsLiked] = useState(
@@ -22,6 +30,88 @@ function TripCard({ trip, onDelete }) {
     );
 
     const [likeLoading, setLikeLoading] = useState(false);
+
+
+    // =========================================
+    // GET PHOTOS
+    // =========================================
+
+    const photos = Array.isArray(trip.photos)
+        ? trip.photos
+        : [];
+
+
+    // =========================================
+    // GET REAL UPLOADED PHOTO URLS
+    // =========================================
+
+    const uploadedPhotos = photos.filter(
+        (photo) =>
+            typeof photo === "string" &&
+            photo.startsWith("http")
+    );
+
+
+    // =========================================
+    // PHOTO COUNT
+    // =========================================
+
+    const photoCount = photos.length;
+
+
+    // =========================================
+    // LATEST UPLOADED PHOTO
+    // =========================================
+
+    const latestUploadedPhoto =
+        uploadedPhotos.length > 0
+            ? uploadedPhotos[
+                  uploadedPhotos.length - 1
+              ]
+            : null;
+
+
+    // =========================================
+    // FALLBACK IMAGE
+    // =========================================
+
+    const fallbackImage =
+        "https://images.unsplash.com/photo-1507525428034-b723cf961d3e";
+
+
+    // =========================================
+    // IMAGE TO DISPLAY
+    // =========================================
+
+    const tripImage =
+        latestUploadedPhoto ||
+        trip.coverImage ||
+        fallbackImage;
+
+
+    // =========================================
+    // LOCATION
+    // =========================================
+
+    const location =
+        trip.location ||
+        trip.destination ||
+        "Unknown location";
+
+
+    // =========================================
+    // DATE
+    // =========================================
+
+    const tripDate =
+        trip.date ||
+        trip.startDate ||
+        null;
+
+
+    // =========================================
+    // DELETE TRIP
+    // =========================================
 
     const handleDelete = async () => {
         const confirmDelete = window.confirm(
@@ -35,14 +125,19 @@ function TripCard({ trip, onDelete }) {
         try {
             await deleteTrip(trip._id);
 
-            alert("Trip deleted successfully!");
+            alert(
+                "Trip deleted successfully!"
+            );
 
             if (onDelete) {
                 onDelete(trip._id);
             }
 
         } catch (error) {
-            console.error("DELETE TRIP ERROR:", error);
+            console.error(
+                "DELETE TRIP ERROR:",
+                error
+            );
 
             alert(
                 error.response?.data?.message ||
@@ -52,28 +147,52 @@ function TripCard({ trip, onDelete }) {
     };
 
 
+    // =========================================
+    // EDIT TRIP
+    // =========================================
+
     const handleEdit = () => {
-        navigate(`/edit-trip/${trip._id}`);
+        navigate(
+            "/edit-trip/" + trip._id
+        );
     };
 
 
-    const handleLike = async () => {
+    // =========================================
+    // LIKE / UNLIKE
+    // =========================================
 
+    const handleLike = async () => {
         if (likeLoading) {
             return;
         }
 
         try {
-
             setLikeLoading(true);
 
-            const response = await toggleLike(trip._id);
+            const response =
+                await toggleLike(trip._id);
 
-            setIsLiked(response.data.isLiked);
+            const newLikeStatus =
+                response.data.isLiked;
+
+            // Update heart immediately
+            setIsLiked(newLikeStatus);
+
+            // Tell parent component
+            // that like status changed.
+            if (onLikeChange) {
+                onLikeChange(
+                    trip._id,
+                    newLikeStatus
+                );
+            }
 
         } catch (error) {
-
-            console.error("LIKE ERROR:", error);
+            console.error(
+                "LIKE ERROR:",
+                error
+            );
 
             alert(
                 error.response?.data?.message ||
@@ -81,99 +200,132 @@ function TripCard({ trip, onDelete }) {
             );
 
         } finally {
-
             setLikeLoading(false);
-
         }
     };
 
 
+    // =========================================
+    // COMPONENT
+    // =========================================
+
     return (
         <div className="trip-card">
 
-            {/* Travel Image */}
+            {/* =================================
+                TRIP IMAGE
+            ================================= */}
+
             <div className="trip-image">
 
                 <img
-                    src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e"
-                    alt="travel"
+                    src={tripImage}
+                    alt={
+                        trip.title ||
+                        "Trip"
+                    }
+                    onError={(event) => {
+                        event.currentTarget.src =
+                            fallbackImage;
+                    }}
                 />
 
             </div>
 
 
-            {/* Trip Details */}
+            {/* =================================
+                TRIP CONTENT
+            ================================= */}
+
             <div className="trip-content">
 
+                {/* TITLE */}
+
                 <h3>
-                    {trip.title}
+                    {trip.title ||
+                        "Untitled Trip"}
                 </h3>
 
 
-                {/* Destination */}
-                <p>
+                {/* LOCATION */}
 
+                <p>
                     <FaMapMarkerAlt />
 
                     &nbsp;
 
-                    {trip.destination}
-
+                    {location}
                 </p>
 
 
-                {/* Start Date */}
-                <p className="trip-date">
+                {/* DATE */}
 
-                    <FaCalendarAlt />
+                {tripDate && (
+                    <p className="trip-date">
 
-                    &nbsp;
+                        <FaCalendarAlt />
 
-                    {new Date(trip.startDate).toLocaleDateString(
-                        "en-GB",
-                        {
-                            day: "2-digit",
-                            month: "long",
-                            year: "numeric"
-                        }
-                    )}
+                        &nbsp;
 
-                </p>
+                        {new Date(
+                            tripDate
+                        ).toLocaleDateString(
+                            "en-GB",
+                            {
+                                day: "2-digit",
+                                month: "long",
+                                year: "numeric"
+                            }
+                        )}
 
-
-                {/* End Date */}
-                <p className="trip-date">
-
-                    <FaCalendarAlt />
-
-                    &nbsp;
-
-                    {new Date(trip.endDate).toLocaleDateString(
-                        "en-GB",
-                        {
-                            day: "2-digit",
-                            month: "long",
-                            year: "numeric"
-                        }
-                    )}
-
-                </p>
+                    </p>
+                )}
 
 
-                {/* Description */}
+                {/* DESCRIPTION */}
+
                 <p>
-                    {trip.description}
+                    {trip.description ||
+                        "No description available"}
                 </p>
 
 
-                {/* Action Buttons */}
+                {/* =================================
+                    PHOTO COUNT
+                ================================= */}
+
+                <p className="trip-photo-count">
+
+                    <FaCamera />
+
+                    &nbsp;
+
+                    {photoCount}
+
+                    {photoCount === 1
+                        ? " photo"
+                        : " photos"}
+
+                </p>
+
+
+                {/* =================================
+                    ACTION BUTTONS
+                ================================= */}
+
                 <div className="trip-actions">
 
-                    {/* Like */}
+                    {/* LIKE */}
+
                     <button
-                        className={`like-btn ${
-                            isLiked ? "liked" : ""
-                        }`}
+                        className={
+                            "like-btn " +
+                            (
+                                isLiked
+                                    ? "liked"
+                                    : ""
+                            )
+                        }
                         onClick={handleLike}
                         disabled={likeLoading}
                         title={
@@ -188,7 +340,8 @@ function TripCard({ trip, onDelete }) {
                     </button>
 
 
-                    {/* Edit */}
+                    {/* EDIT */}
+
                     <button
                         className="edit-btn"
                         onClick={handleEdit}
@@ -200,7 +353,8 @@ function TripCard({ trip, onDelete }) {
                     </button>
 
 
-                    {/* Delete */}
+                    {/* DELETE */}
+
                     <button
                         className="delete-btn"
                         onClick={handleDelete}

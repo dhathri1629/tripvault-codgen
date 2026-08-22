@@ -4,21 +4,67 @@ const router = express.Router();
 const {
     signup,
     login,
-    getMe
+    getMe,
+    updateProfile
 } = require("../controllers/authController");
 
 const authMiddleware = require("../middleware/authMiddleware");
 
-// Register (Week 1 requirement)
-router.post("/register", signup);
+// ==========================================
+// REGISTER
+// ==========================================
 
-// Keep signup for compatibility
-router.post("/signup", signup);
+router.post(
+    "/register",
+    signup
+);
 
-// Login
-router.post("/login", login);
 
-// Get logged-in user (Protected)
-router.get("/me", authMiddleware, getMe);
+// ==========================================
+// SIGNUP
+// Keep for compatibility
+// ==========================================
+
+router.post(
+    "/signup",
+    signup
+);
+
+
+// ==========================================
+// LOGIN
+// ==========================================
+
+router.post(
+    "/login",
+    login
+);
+
+
+// ==========================================
+// GET LOGGED-IN USER
+// Protected
+// ==========================================
+
+router.get(
+    "/me",
+    authMiddleware,
+    getMe
+);
+
+
+// ==========================================
+// UPDATE PROFILE
+// Protected
+// PUT /api/auth/profile
+// ==========================================
+
+router.put(
+    "/profile",
+    authMiddleware,
+    updateProfile
+);
+
 
 module.exports = router;
+

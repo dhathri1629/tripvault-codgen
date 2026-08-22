@@ -1,62 +1,60 @@
 const mongoose = require("mongoose");
 
 const tripSchema = new mongoose.Schema(
-  {
-    user: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
-      required: true,
-    },
+    {
+        title: {
+            type: String,
+            required: true
+        },
 
-    title: {
-      type: String,
-      required: true,
-      trim: true,
-    },
+        destination: {
+            type: String,
+            required: true
+        },
 
-    destination: {
-      type: String,
-      required: true,
-      trim: true,
-    },
+        startDate: {
+            type: Date
+        },
 
-    startDate: {
-      type: Date,
-      required: true,
-    },
+        endDate: {
+            type: Date
+        },
 
-    endDate: {
-      type: Date,
-      required: true,
-    },
+        description: {
+            type: String
+        },
 
-    description: {
-      type: String,
-      default: "",
-      trim: true,
-    },
+        rating: {
+            type: Number,
+            min: 1,
+            max: 5
+        },
 
-    rating: {
-      type: Number,
-      min: 0,
-      max: 5,
-      default: 0,
-    },
+        // Favorite / Like status
+        isLiked: {
+            type: Boolean,
+            default: false
+        },
 
-    isLiked: {
-      type: Boolean,
-      default: false,
-    },
+        coverImage: {
+            type: String
+        },
 
-    photos: [
-      {
-        type: String,
-      },
-    ],
-  },
-  {
-    timestamps: true,
-  }
+        photos: [
+            {
+                type: String
+            }
+        ],
+
+        user: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "User",
+            required: true
+        }
+    },
+    {
+        timestamps: true
+    }
 );
 
 module.exports = mongoose.model("Trip", tripSchema);

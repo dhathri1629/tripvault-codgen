@@ -194,11 +194,77 @@ const deleteTrip = async (req, res) => {
 };
 
 
+// Upload Trip Photo
+const uploadTripPhoto = async (req, res) => {
+    try {
+        console.log("UPLOADED FILE:", req.file);
+
+        const trip = await Trip.findOne({
+            _id: req.params.id,
+            user: req.user.id
+        });
+
+        if (!trip) {
+            return res.status(404).json({
+                message: "Trip not found"
+            });
+        }
+
+        if (!req.file) {
+            return res.status(400).json({
+                message: "Please upload an image"
+            });
+        }
+
+        const imageUrl = req.file.path;
+
+        // Create updated photos array
+        const updatedPhotos = [
+            ...(trip.photos || []),
+            imageUrl
+        ];
+
+        // Set cover image if there isn't one
+        const updatedCoverImage =
+            trip.coverImage || imageUrl;
+
+        // Update only photo-related fields
+        await Trip.updateOne(
+            {
+                _id: trip._id,
+                user: req.user.id
+            },
+            {
+                $set: {
+                    photos: updatedPhotos,
+                    coverImage: updatedCoverImage
+                }
+            }
+        );
+
+        res.status(200).json({
+            message: "Photo uploaded successfully",
+            photo: imageUrl,
+            coverImage: updatedCoverImage,
+            photos: updatedPhotos
+        });
+
+    } catch (error) {
+        console.error("UPLOAD PHOTO ERROR:", error);
+
+        res.status(500).json({
+            message: error.message
+        });
+    }
+};
+
+
 module.exports = {
     createTrip,
     getTrips,
     getTrip,
     updateTrip,
     toggleLike,
-    deleteTrip
+    deleteTrip,
+    uploadTripPhoto
 };

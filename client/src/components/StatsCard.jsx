@@ -5,11 +5,14 @@ import {
   FaMapMarkerAlt,
   FaHeart,
 } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 import { getTrips } from "../services/tripService";
 import "../styles/cards.css";
 
 function StatsCard() {
+  const navigate = useNavigate();
+
   const [stats, setStats] = useState({
     trips: 0,
     photos: 0,
@@ -23,69 +26,115 @@ function StatsCard() {
 
   const loadStats = async () => {
     try {
-      const res = await getTrips();
+      const response = await getTrips();
 
-      const trips = res.data;
+      const trips = Array.isArray(response.data)
+        ? response.data
+        : [];
 
-      // Count photos
-      const photoCount = trips.reduce(
-        (total, trip) => total + (trip.photos ? trip.photos.length : 0),
-        0
-      );
+      let photoCount = 0;
 
-      // Count unique places
-      const uniquePlaces = new Set(
-        trips.map((trip) => trip.location)
-      ).size;
+      trips.forEach((trip) => {
+        if (Array.isArray(trip.photos)) {
+          photoCount += trip.photos.length;
+        }
+      });
+
+      const places = new Set();
+
+      trips.forEach((trip) => {
+        const location =
+          trip.location ||
+          trip.destination ||
+          "";
+
+        if (location.trim()) {
+          places.add(location.trim().toLowerCase());
+        }
+      });
+
+      const favoriteCount = trips.filter(
+        (trip) => trip.isLiked === true
+      ).length;
 
       setStats({
         trips: trips.length,
         photos: photoCount,
-        places: uniquePlaces,
-        favorites: 0, // We'll implement favorites later
+        places: places.size,
+        favorites: favoriteCount,
       });
 
-    } catch (err) {
-      console.error(err);
+    } catch (error) {
+      console.error(
+        "Failed to load dashboard stats:",
+        error
+      );
     }
   };
 
-  const cards = [
-    {
-      icon: <FaSuitcase />,
-      title: "Trips",
-      value: stats.trips,
-    },
-    {
-      icon: <FaCamera />,
-      title: "Photos",
-      value: stats.photos,
-    },
-    {
-      icon: <FaMapMarkerAlt />,
-      title: "Places",
-      value: stats.places,
-    },
-    {
-      icon: <FaHeart />,
-      title: "Favorites",
-      value: stats.favorites,
-    },
-  ];
-
   return (
     <div className="stats-container">
-      {cards.map((item, index) => (
-        <div className="stats-card" key={index}>
-          <div className="stats-icon">{item.icon}</div>
 
-          <h3>{item.value}</h3>
-
-          <p>{item.title}</p>
+      {/* TRIPS */}
+      <div className="stats-card">
+        <div className="stats-icon">
+          <FaSuitcase />
         </div>
-      ))}
+
+        <h3>{stats.trips}</h3>
+
+        <p>Trips</p>
+      </div>
+
+
+      {/* PHOTOS */}
+      <div className="stats-card">
+        <div className="stats-icon">
+          <FaCamera />
+        </div>
+
+        <h3>{stats.photos}</h3>
+
+        <p>Photos</p>
+      </div>
+
+
+      {/* PLACES */}
+      <div className="stats-card">
+        <div className="stats-icon">
+          <FaMapMarkerAlt />
+        </div>
+
+        <h3>{stats.places}</h3>
+
+        <p>Places</p>
+      </div>
+
+
+      {/* FAVORITES */}
+      <div
+        className="stats-card favorites-card"
+        onClick={() => navigate("/favorites")}
+        role="button"
+        tabIndex={0}
+        onKeyDown={(event) => {
+          if (event.key === "Enter" || event.key === " ") {
+            navigate("/favorites");
+          }
+        }}
+      >
+        <div className="stats-icon">
+          <FaHeart />
+        </div>
+
+        <h3>{stats.favorites}</h3>
+
+        <p>Favorites</p>
+      </div>
+
     </div>
   );
 }
 
 export default StatsCard;
+

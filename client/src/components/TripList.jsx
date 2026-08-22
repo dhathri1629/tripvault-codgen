@@ -7,13 +7,12 @@ function TripList() {
     const [trips, setTrips] = useState([]);
     const [loading, setLoading] = useState(true);
 
-    useEffect(() => {
-        fetchTrips();
-    }, []);
-
     const fetchTrips = async () => {
         try {
             const response = await getTrips();
+
+            console.log("UPDATED TRIPS:", response.data);
+
             setTrips(response.data);
         } catch (error) {
             console.error("Error fetching trips:", error);
@@ -21,6 +20,29 @@ function TripList() {
             setLoading(false);
         }
     };
+
+    useEffect(() => {
+        // Load trips when dashboard opens
+        fetchTrips();
+
+        // Reload trips after photo upload
+        const handleRefresh = () => {
+            console.log("Refreshing trips after upload...");
+            fetchTrips();
+        };
+
+        window.addEventListener(
+            "tripvault:refresh-stats",
+            handleRefresh
+        );
+
+        return () => {
+            window.removeEventListener(
+                "tripvault:refresh-stats",
+                handleRefresh
+            );
+        };
+    }, []);
 
     const handleDelete = (deletedTripId) => {
         setTrips((currentTrips) =>
