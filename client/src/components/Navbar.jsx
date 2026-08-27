@@ -1,98 +1,270 @@
 import React, { useState } from "react";
 import {
-  FaPlaneDeparture,
-  FaBell,
-  FaUserCircle,
-  FaSignOutAlt,
-  FaUser,
-  FaEnvelope
+    FaPlaneDeparture,
+    FaBell,
+    FaUserCircle,
+    FaSignOutAlt,
+    FaUser,
+    FaEnvelope,
+    FaBars,
+    FaTimes,
+    FaHome,
+    FaSuitcase,
+    FaImages,
+    FaHeart
 } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import "../styles/navbar.css";
 
 function Navbar() {
-  const navigate = useNavigate();
+    const navigate = useNavigate();
 
-  const username = localStorage.getItem("name") || "Traveler";
-  const email = localStorage.getItem("email") || "No email available";
+    const username =
+        localStorage.getItem("name") ||
+        "Traveler";
 
-  const [showProfile, setShowProfile] = useState(false);
+    const email =
+        localStorage.getItem("email") ||
+        "No email available";
 
-  const handleProfileClick = () => {
-    setShowProfile(!showProfile);
-  };
+    const [showProfile, setShowProfile] =
+        useState(false);
 
-  const handleLogout = () => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("name");
-    localStorage.removeItem("email");
-    localStorage.removeItem("userId");
+    const [showMenu, setShowMenu] =
+        useState(false);
 
-    navigate("/login");
-  };
+    const handleLogout = () => {
+        localStorage.removeItem("token");
+        localStorage.removeItem("name");
+        localStorage.removeItem("email");
+        localStorage.removeItem("userId");
 
-  return (
-    <nav className="navbar">
+        navigate("/login");
+    };
 
-      {/* Logo */}
-      <div className="logo">
-        <FaPlaneDeparture className="logo-icon" />
-        <span>TripVault</span>
-      </div>
+    const handleNavigation = (path) => {
+        setShowMenu(false);
+        setShowProfile(false);
+        navigate(path);
+    };
 
-      {/* Right Side */}
-      <div className="nav-right">
+    return (
+        <nav className="navbar">
 
-        <FaBell className="nav-icon" />
+            {/* Logo */}
+            <div
+                className="logo"
+                onClick={() =>
+                    handleNavigation("/dashboard")
+                }
+            >
+                <FaPlaneDeparture
+                    className="logo-icon"
+                />
 
-        {/* Profile */}
-        <div className="profile-container">
+                <span>TripVault</span>
+            </div>
 
-          <button
-            className="user-info"
-            onClick={handleProfileClick}
-          >
-            <FaUserCircle className="user-icon" />
-            <span>{username}</span>
-          </button>
 
-          {/* Profile Dropdown */}
-          {showProfile && (
-            <div className="profile-dropdown">
+            {/* Desktop Navigation */}
+            <div className="nav-links">
 
-              <div className="profile-header">
+                <button
+                    onClick={() =>
+                        handleNavigation(
+                            "/dashboard"
+                        )
+                    }
+                >
+                    <FaHome />
+                    Home
+                </button>
 
-                <FaUser className="profile-icon" />
+                <button
+                    onClick={() =>
+                        handleNavigation(
+                            "/add-trip"
+                        )
+                    }
+                >
+                    <FaSuitcase />
+                    Add Trip
+                </button>
 
-                <div>
-                  <strong>{username}</strong>
+                <button
+                    onClick={() =>
+                        handleNavigation(
+                            "/photos"
+                        )
+                    }
+                >
+                    <FaImages />
+                    Photos
+                </button>
 
-                  <p>
-                    <FaEnvelope />
-                    &nbsp;
-                    {email}
-                  </p>
-                </div>
-
-              </div>
-
-              <button
-                className="logout-btn"
-                onClick={handleLogout}
-              >
-                <FaSignOutAlt />
-                <span>Logout</span>
-              </button>
+                <button
+                    onClick={() =>
+                        handleNavigation(
+                            "/favorites"
+                        )
+                    }
+                >
+                    <FaHeart />
+                    Favorites
+                </button>
 
             </div>
-          )}
 
-        </div>
 
-      </div>
+            {/* Right Side */}
+            <div className="nav-right">
 
-    </nav>
-  );
+                <FaBell
+                    className="nav-icon"
+                />
+
+
+                {/* Profile */}
+                <div className="profile-container">
+
+                    <button
+                        className="user-info"
+                        onClick={() =>
+                            setShowProfile(
+                                !showProfile
+                            )
+                        }
+                    >
+                        <FaUserCircle
+                            className="user-icon"
+                        />
+
+                        <span>
+                            {username}
+                        </span>
+                    </button>
+
+
+                    {/* Profile Dropdown */}
+                    {showProfile && (
+                        <div className="profile-dropdown">
+
+                            <div className="profile-header">
+
+                                <FaUser
+                                    className="profile-icon"
+                                />
+
+                                <div>
+
+                                    <strong>
+                                        {username}
+                                    </strong>
+
+                                    <p>
+                                        <FaEnvelope />
+                                        &nbsp;
+                                        {email}
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+
+                            <button
+                                className="logout-btn"
+                                onClick={
+                                    handleLogout
+                                }
+                            >
+                                <FaSignOutAlt />
+
+                                <span>
+                                    Logout
+                                </span>
+                            </button>
+
+                        </div>
+                    )}
+
+                </div>
+
+
+                {/* Mobile Menu Button */}
+                <button
+                    className="menu-toggle"
+                    onClick={() =>
+                        setShowMenu(
+                            !showMenu
+                        )
+                    }
+                    aria-label="Toggle navigation menu"
+                >
+                    {showMenu ? (
+                        <FaTimes />
+                    ) : (
+                        <FaBars />
+                    )}
+                </button>
+
+            </div>
+
+
+            {/* Mobile Navigation */}
+            {showMenu && (
+                <div className="mobile-menu">
+
+                    <button
+                        onClick={() =>
+                            handleNavigation(
+                                "/dashboard"
+                            )
+                        }
+                    >
+                        <FaHome />
+                        Home
+                    </button>
+
+                    <button
+                        onClick={() =>
+                            handleNavigation(
+                                "/add-trip"
+                            )
+                        }
+                    >
+                        <FaSuitcase />
+                        Add Trip
+                    </button>
+
+                    <button
+                        onClick={() =>
+                            handleNavigation(
+                                "/photos"
+                            )
+                        }
+                    >
+                        <FaImages />
+                        Photos
+                    </button>
+
+                    <button
+                        onClick={() =>
+                            handleNavigation(
+                                "/favorites"
+                            )
+                        }
+                    >
+                        <FaHeart />
+                        Favorites
+                    </button>
+
+                </div>
+            )}
+
+        </nav>
+    );
 }
 
 export default Navbar;
+

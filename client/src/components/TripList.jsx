@@ -6,28 +6,47 @@ import "../styles/tripList.css";
 function TripList() {
     const [trips, setTrips] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [error, setError] = useState("");
 
     const fetchTrips = async () => {
         try {
+            setLoading(true);
+            setError("");
+
             const response = await getTrips();
 
             console.log("UPDATED TRIPS:", response.data);
 
-            setTrips(response.data);
+            setTrips(
+                Array.isArray(response.data)
+                    ? response.data
+                    : []
+            );
+
         } catch (error) {
-            console.error("Error fetching trips:", error);
+            console.error(
+                "Error fetching trips:",
+                error
+            );
+
+            setError(
+                error.response?.data?.message ||
+                "Unable to load your trips. Please try again."
+            );
+
         } finally {
             setLoading(false);
         }
     };
 
     useEffect(() => {
-        // Load trips when dashboard opens
         fetchTrips();
 
-        // Reload trips after photo upload
         const handleRefresh = () => {
-            console.log("Refreshing trips after upload...");
+            console.log(
+                "Refreshing trips after upload..."
+            );
+
             fetchTrips();
         };
 
@@ -58,11 +77,29 @@ function TripList() {
             <h2>🧳 My Trips</h2>
 
             {loading ? (
-                <p>Loading trips...</p>
+                <div className="trip-status">
+                    <p>Loading your trips...</p>
+                </div>
+            ) : error ? (
+                <div className="trip-status trip-error">
+                    <p>{error}</p>
+
+                    <button
+                        type="button"
+                        onClick={fetchTrips}
+                    >
+                        Try Again
+                    </button>
+                </div>
             ) : trips.length === 0 ? (
-                <p>
-                    No trips found. Start your first journey!
-                </p>
+                <div className="trip-status">
+                    <h3>No trips yet</h3>
+
+                    <p>
+                        Start your first journey and
+                        save your travel memories!
+                    </p>
+                </div>
             ) : (
                 <div className="trip-grid">
 
@@ -82,3 +119,4 @@ function TripList() {
 }
 
 export default TripList;
+

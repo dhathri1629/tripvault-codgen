@@ -1,40 +1,75 @@
 .trip-list {
-
-    width:90%;
-
-    margin:50px auto;
-
-    text-align:center;
-
+    width: 90%;
+    margin: 50px auto;
+    text-align: center;
 }
-
-
 
 .trip-list h2 {
-
-    font-size:38px;
-
-    color:#111827;
-
-    margin-bottom:40px;
-
+    font-size: 38px;
+    color: #111827;
+    margin-bottom: 40px;
 }
-
-
 
 .trip-grid {
-
-
-    display:grid;
-
-    grid-template-columns:
-
-    repeat(auto-fit,minmax(330px,1fr));
-
-
-    gap:35px;
-
-
-    justify-content:center;
-
+    display: grid;
+    grid-template-columns: repeat(
+        auto-fit,
+        minmax(330px, 1fr)
+    );
+    gap: 35px;
+    justify-content: center;
 }
+
+.trip-status {
+    padding: 30px 20px;
+    margin: 20px auto;
+    max-width: 600px;
+    border-radius: 12px;
+    background: #f9fafb;
+}
+
+.trip-status h3 {
+    margin-bottom: 10px;
+    color: #111827;
+}
+
+.trip-status p {
+    color: #6b7280;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+.trip-error {
+    background: #fef2f2;
+}
+
+.trip-error p {
+    color: #b91c1c;
+    margin-bottom: 15px;
+}
+
+.trip-error button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+@media (max-width: 700px) {
+    .trip-list {
+        width: 92%;
+        margin: 35px auto;
+    }
+
+    .trip-list h2 {
+        font-size: 30px;
+        margin-bottom: 25px;
+    }
+
+    .trip-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+}
+

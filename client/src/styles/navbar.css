@@ -4,21 +4,14 @@
 
 .navbar {
     width: 100%;
-
     display: flex;
     justify-content: space-between;
     align-items: center;
-
     padding: 18px 45px;
-
     background: #ffffff;
-
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.06);
-
     box-sizing: border-box;
-
     position: relative;
-
     z-index: 100;
 }
 
@@ -29,22 +22,57 @@
 
 .logo {
     display: flex;
-
     align-items: center;
-
     gap: 10px;
-
     color: #1f2937;
-
     font-size: 24px;
-
     font-weight: 700;
+    cursor: pointer;
 }
 
 .logo-icon {
     color: #c08457;
-
     font-size: 25px;
+}
+
+
+/* ========================================
+   DESKTOP NAVIGATION
+======================================== */
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.nav-links button {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+
+    padding: 9px 13px;
+
+    background: transparent;
+
+    border: none;
+
+    border-radius: 8px;
+
+    color: #4b5563;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.25s ease;
+}
+
+.nav-links button:hover {
+    background: #fff7ed;
+    color: #c08457;
 }
 
 
@@ -54,9 +82,7 @@
 
 .nav-right {
     display: flex;
-
     align-items: center;
-
     gap: 20px;
 }
 
@@ -67,40 +93,35 @@
 
 .nav-icon {
     font-size: 20px;
-
     color: #6b7280;
-
     cursor: pointer;
-
     transition: 0.25s ease;
 }
 
 .nav-icon:hover {
     color: #c08457;
-
     transform: scale(1.08);
 }
 
 
 /* ========================================
    PROFILE
-   ONLY THIS PART IS CHANGED
 ======================================== */
+
+.profile-container {
+    position: relative;
+}
 
 .user-info {
     display: flex;
-
     align-items: center;
-
     gap: 9px;
 
     padding: 7px 13px;
 
-    /* Soft cream */
-    background: #fffaf5 !important;
+    background: #fffaf5;
 
-    /* Light beige border */
-    border: 1px solid #ead8c8 !important;
+    border: 1px solid #ead8c8;
 
     border-radius: 25px;
 
@@ -109,14 +130,9 @@
     transition: 0.25s ease;
 }
 
-
-/* Profile Hover */
-
 .user-info:hover {
-    background: #fdf4eb !important;
-
-    border-color: #dfc5ae !important;
-
+    background: #fdf4eb;
+    border-color: #dfc5ae;
     transform: translateY(-1px);
 }
 
@@ -126,8 +142,7 @@
 ======================================== */
 
 .user-icon {
-    color: #c79a6e !important;
-
+    color: #c79a6e;
     font-size: 28px;
 }
 
@@ -137,7 +152,7 @@
 ======================================== */
 
 .user-info span {
-    color: #6b5140 !important;
+    color: #6b5140;
 
     font-size: 15px;
 
@@ -154,13 +169,194 @@
 
 
 /* ========================================
+   PROFILE DROPDOWN
+======================================== */
+
+.profile-dropdown {
+    position: absolute;
+
+    top: calc(100% + 12px);
+
+    right: 0;
+
+    width: 260px;
+
+    padding: 16px;
+
+    background: white;
+
+    border: 1px solid #ead8c8;
+
+    border-radius: 12px;
+
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.12);
+}
+
+.profile-header {
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 12px;
+
+    padding-bottom: 14px;
+
+    border-bottom: 1px solid #f1f1f1;
+}
+
+.profile-icon {
+    color: #c08457;
+
+    font-size: 22px;
+}
+
+.profile-header strong {
+    color: #1f2937;
+
+    font-size: 16px;
+}
+
+.profile-header p {
+    display: flex;
+
+    align-items: center;
+
+    margin: 6px 0 0;
+
+    color: #6b7280;
+
+    font-size: 13px;
+
+    word-break: break-word;
+}
+
+.profile-header p svg {
+    flex-shrink: 0;
+}
+
+
+/* ========================================
+   LOGOUT
+======================================== */
+
+.logout-btn {
+    width: 100%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 8px;
+
+    margin-top: 14px;
+
+    padding: 10px;
+
+    background: #fff;
+
+    border: 1px solid #ead8c8;
+
+    border-radius: 8px;
+
+    color: #b45309;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.25s ease;
+}
+
+.logout-btn:hover {
+    background: #fff7ed;
+}
+
+
+/* ========================================
+   MOBILE MENU BUTTON
+======================================== */
+
+.menu-toggle {
+    display: none;
+
+    align-items: center;
+
+    justify-content: center;
+
+    width: 40px;
+
+    height: 40px;
+
+    background: transparent;
+
+    border: none;
+
+    border-radius: 8px;
+
+    color: #4b5563;
+
+    font-size: 21px;
+
+    cursor: pointer;
+}
+
+.menu-toggle:hover {
+    background: #fff7ed;
+
+    color: #c08457;
+}
+
+
+/* ========================================
+   MOBILE MENU
+======================================== */
+
+.mobile-menu {
+    display: none;
+}
+
+
+/* ========================================
+   TABLET
+======================================== */
+
+@media (max-width: 900px) {
+
+    .navbar {
+        padding: 16px 25px;
+    }
+
+    .nav-links {
+        gap: 2px;
+    }
+
+    .nav-links button {
+        padding: 8px 9px;
+
+        font-size: 13px;
+    }
+
+    .nav-right {
+        gap: 12px;
+    }
+}
+
+
+/* ========================================
    MOBILE
 ======================================== */
 
-@media (max-width: 600px) {
+@media (max-width: 700px) {
 
     .navbar {
-        padding: 15px 20px;
+        padding: 14px 20px;
+
+        flex-wrap: wrap;
     }
 
     .logo {
@@ -171,21 +367,92 @@
         font-size: 21px;
     }
 
+    /* Hide desktop navigation */
+    .nav-links {
+        display: none;
+    }
+
     .nav-right {
-        gap: 12px;
+        gap: 10px;
+    }
+
+    .nav-icon {
+        display: none;
     }
 
     .user-info {
-        padding: 6px 10px;
+        padding: 6px 9px;
     }
 
     .user-info span {
-        max-width: 80px;
+        max-width: 75px;
 
         font-size: 13px;
     }
 
     .user-icon {
         font-size: 25px;
+    }
+
+    /* Show hamburger */
+    .menu-toggle {
+        display: flex;
+    }
+
+    /* Mobile dropdown menu */
+    .mobile-menu {
+        width: 100%;
+
+        display: flex;
+
+        flex-direction: column;
+
+        gap: 6px;
+
+        margin-top: 14px;
+
+        padding: 12px;
+
+        background: #fffaf5;
+
+        border: 1px solid #ead8c8;
+
+        border-radius: 12px;
+
+        box-sizing: border-box;
+    }
+
+    .mobile-menu button {
+        display: flex;
+
+        align-items: center;
+
+        gap: 10px;
+
+        width: 100%;
+
+        padding: 12px;
+
+        background: white;
+
+        border: none;
+
+        border-radius: 8px;
+
+        color: #4b5563;
+
+        font-size: 15px;
+
+        font-weight: 600;
+
+        text-align: left;
+
+        cursor: pointer;
+    }
+
+    .mobile-menu button:hover {
+        background: #fff7ed;
+
+        color: #c08457;
     }
 }
