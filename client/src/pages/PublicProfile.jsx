@@ -3,6 +3,8 @@ import { useParams } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import TripCard from "../components/TripCard";
 
+const API = "https://tripvault-codgen.onrender.com";
+
 function PublicProfile() {
     const { username } = useParams();
 
@@ -21,7 +23,7 @@ function PublicProfile() {
             setError("");
 
             const response = await fetch(
-                `http://localhost:5000/api/users/${username}/profile`
+                `${API}/api/users/${username}/profile`
             );
 
             const data = await response.json();
@@ -33,20 +35,22 @@ function PublicProfile() {
             }
 
             setProfile(data.profile);
+
             setTrips(
                 Array.isArray(data.trips)
                     ? data.trips
                     : []
             );
-
         } catch (error) {
             console.error(
                 "PUBLIC PROFILE ERROR:",
                 error
             );
 
-            setError(error.message);
-
+            setError(
+                error.message ||
+                "Unable to load profile."
+            );
         } finally {
             setLoading(false);
         }
@@ -90,6 +94,22 @@ function PublicProfile() {
                         {error ||
                             "This profile does not exist."}
                     </p>
+
+                    <button
+                        onClick={loadProfile}
+                        style={{
+                            marginTop: "15px",
+                            padding: "10px 20px",
+                            border: "none",
+                            borderRadius: "8px",
+                            background: "#2563eb",
+                            color: "white",
+                            cursor: "pointer",
+                            fontSize: "15px"
+                        }}
+                    >
+                        Try Again
+                    </button>
                 </div>
             </div>
         );
@@ -99,10 +119,7 @@ function PublicProfile() {
         <div>
             <Navbar />
 
-            {/* ===============================
-                PROFILE HEADER
-            =============================== */}
-
+            {/* PROFILE HEADER */}
             <section
                 style={{
                     padding: "50px 30px 30px",
@@ -143,11 +160,7 @@ function PublicProfile() {
                 </p>
             </section>
 
-
-            {/* ===============================
-                PUBLIC TRIPS
-            =============================== */}
-
+            {/* PUBLIC TRIPS */}
             <section
                 style={{
                     padding: "20px 40px 60px",
@@ -164,7 +177,12 @@ function PublicProfile() {
                 </h2>
 
                 {trips.length === 0 ? (
-                    <div>
+                    <div
+                        style={{
+                            textAlign: "center",
+                            padding: "40px"
+                        }}
+                    >
                         <h3>
                             No public trips yet
                         </h3>

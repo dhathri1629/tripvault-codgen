@@ -265,7 +265,7 @@ npm run dev
 Backend runs on:
 
 ```text
-http://localhost:5000
+https://tripvault-codgen.onrender.com
 ```
 
 ### 6. Install Frontend Dependencies

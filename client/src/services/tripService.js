@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API = "http://localhost:5000/api/trips";
+const API = "https://tripvault-codgen.onrender.com/api/trips";
 
 const getToken = () => localStorage.getItem("token");
 
@@ -13,7 +13,6 @@ export const createTrip = async (tripData) => {
     });
 };
 
-
 // Get All Trips
 export const getTrips = async () => {
     return axios.get(API, {
@@ -22,7 +21,6 @@ export const getTrips = async () => {
         }
     });
 };
-
 
 // Get Single Trip
 export const getTrip = async (id) => {
@@ -33,7 +31,6 @@ export const getTrip = async (id) => {
     });
 };
 
-
 // Update Trip
 export const updateTrip = async (id, tripData) => {
     return axios.put(`${API}/${id}`, tripData, {
@@ -42,7 +39,6 @@ export const updateTrip = async (id, tripData) => {
         }
     });
 };
-
 
 // Like / Unlike Trip
 export const toggleLike = async (id) => {
@@ -56,7 +52,6 @@ export const toggleLike = async (id) => {
         }
     );
 };
-
 
 // Delete Trip
 export const deleteTrip = async (id) => {

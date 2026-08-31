@@ -1,10 +1,9 @@
 import axios from "axios";
 
-const API = "http://localhost:5000/api/photos";
+const API = "https://tripvault-codgen.onrender.com/api/photos";
 
 const getToken = () =>
     localStorage.getItem("token");
-
 
 // =====================================================
 // UPLOAD MULTIPLE PHOTOS
@@ -33,7 +32,6 @@ export const uploadTripPhotos = async (
     );
 };
 
-
 // =====================================================
 // DELETE PHOTO
 // =====================================================
@@ -57,4 +55,3 @@ export const deleteTripPhoto = async (
         }
     );
 };
-

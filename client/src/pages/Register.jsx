@@ -5,6 +5,8 @@ import { toast } from "react-toastify";
 import { FaPlaneDeparture } from "react-icons/fa";
 import "../styles/register.css";
 
+const API = "https://tripvault-codgen.onrender.com/api/auth";
+
 function Register() {
   const navigate = useNavigate();
 
@@ -30,7 +32,7 @@ function Register() {
       setLoading(true);
 
       await axios.post(
-        "http://localhost:5000/api/auth/register",
+        `${API}/register`,
         formData
       );
 

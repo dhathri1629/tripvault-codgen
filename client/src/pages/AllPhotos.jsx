@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 
+const API = "https://tripvault-codgen.onrender.com/api/photos";
+
 const AllPhotos = () => {
     const [photos, setPhotos] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -16,14 +18,11 @@ const AllPhotos = () => {
 
             const token = localStorage.getItem("token");
 
-            const response = await fetch(
-                "http://localhost:5000/api/photos",
-                {
-                    headers: {
-                        Authorization: `Bearer ${token}`
-                    }
-                }
-            );
+            const response = await fetch(API, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
 
             if (!response.ok) {
                 throw new Error("Failed to load photos");
@@ -31,12 +30,6 @@ const AllPhotos = () => {
 
             const data = await response.json();
 
-            /*
-             * The API may return either:
-             *   [photo, photo, photo]
-             * or
-             *   { photos: [...] }
-             */
             const photoList = Array.isArray(data)
                 ? data
                 : data.photos || [];
@@ -50,9 +43,6 @@ const AllPhotos = () => {
         }
     };
 
-    /*
-     * Group photos by destination/location
-     */
     const groupedPhotos = photos.reduce((groups, photo) => {
         const location =
             photo.destination?.trim() || "Unknown Location";
@@ -66,9 +56,6 @@ const AllPhotos = () => {
         return groups;
     }, {});
 
-    /*
-     * Loading screen
-     */
     if (loading) {
         return (
             <div
@@ -79,7 +66,7 @@ const AllPhotos = () => {
                     justifyContent: "center",
                     alignItems: "center",
                     fontSize: "20px",
-                    color: "#6b7280"
+                    color: "#6b7280",
                 }}
             >
                 Loading your photos...
@@ -87,9 +74,6 @@ const AllPhotos = () => {
         );
     }
 
-    /*
-     * Error screen
-     */
     if (error) {
         return (
             <div
@@ -97,13 +81,13 @@ const AllPhotos = () => {
                     minHeight: "100vh",
                     background: "#f5f7fb",
                     padding: "60px 30px",
-                    textAlign: "center"
+                    textAlign: "center",
                 }}
             >
                 <h2
                     style={{
                         color: "#111827",
-                        marginBottom: "12px"
+                        marginBottom: "12px",
                     }}
                 >
                     Unable to load photos
@@ -112,7 +96,7 @@ const AllPhotos = () => {
                 <p
                     style={{
                         color: "#6b7280",
-                        marginBottom: "25px"
+                        marginBottom: "25px",
                     }}
                 >
                     {error}
@@ -127,7 +111,7 @@ const AllPhotos = () => {
                         padding: "12px 24px",
                         borderRadius: "10px",
                         fontSize: "16px",
-                        cursor: "pointer"
+                        cursor: "pointer",
                     }}
                 >
                     Try Again
@@ -141,15 +125,14 @@ const AllPhotos = () => {
             style={{
                 minHeight: "100vh",
                 background: "#f5f7fb",
-                paddingBottom: "80px"
+                paddingBottom: "80px",
             }}
         >
-            {/* Header */}
             <div
                 style={{
                     background: "white",
                     padding: "28px 50px",
-                    borderBottom: "1px solid #e5e7eb"
+                    borderBottom: "1px solid #e5e7eb",
                 }}
             >
                 <h1
@@ -157,7 +140,7 @@ const AllPhotos = () => {
                         margin: 0,
                         fontSize: "42px",
                         color: "#111827",
-                        fontWeight: "700"
+                        fontWeight: "700",
                     }}
                 >
                     All Photos
@@ -167,26 +150,24 @@ const AllPhotos = () => {
                     style={{
                         margin: "8px 0 0",
                         fontSize: "18px",
-                        color: "#6b7280"
+                        color: "#6b7280",
                     }}
                 >
                     All your travel memories in one place
                 </p>
             </div>
 
-            {/* Main Content */}
             <div
                 style={{
                     maxWidth: "1400px",
                     margin: "0 auto",
-                    padding: "50px 30px"
+                    padding: "50px 30px",
                 }}
             >
-                {/* Total Photos */}
                 <div
                     style={{
                         textAlign: "center",
-                        marginBottom: "45px"
+                        marginBottom: "45px",
                     }}
                 >
                     <div
@@ -198,21 +179,17 @@ const AllPhotos = () => {
                             padding: "12px 22px",
                             borderRadius: "30px",
                             boxShadow:
-                                "0 4px 15px rgba(0,0,0,0.06)"
+                                "0 4px 15px rgba(0,0,0,0.06)",
                         }}
                     >
-                        <span
-                            style={{
-                                fontSize: "24px"
-                            }}
-                        >
+                        <span style={{ fontSize: "24px" }}>
                             📷
                         </span>
 
                         <span
                             style={{
                                 fontSize: "18px",
-                                color: "#4b5563"
+                                color: "#4b5563",
                             }}
                         >
                             {photos.length}{" "}
@@ -223,7 +200,6 @@ const AllPhotos = () => {
                     </div>
                 </div>
 
-                {/* No Photos */}
                 {photos.length === 0 ? (
                     <div
                         style={{
@@ -232,13 +208,13 @@ const AllPhotos = () => {
                             padding: "70px 30px",
                             textAlign: "center",
                             boxShadow:
-                                "0 8px 25px rgba(0,0,0,0.06)"
+                                "0 8px 25px rgba(0,0,0,0.06)",
                         }}
                     >
                         <div
                             style={{
                                 fontSize: "60px",
-                                marginBottom: "20px"
+                                marginBottom: "20px",
                             }}
                         >
                             📷
@@ -247,7 +223,7 @@ const AllPhotos = () => {
                         <h2
                             style={{
                                 margin: "0 0 10px",
-                                color: "#111827"
+                                color: "#111827",
                             }}
                         >
                             No photos yet
@@ -257,7 +233,7 @@ const AllPhotos = () => {
                             style={{
                                 margin: 0,
                                 color: "#6b7280",
-                                fontSize: "17px"
+                                fontSize: "17px",
                             }}
                         >
                             Upload photos to your trips and
@@ -265,18 +241,14 @@ const AllPhotos = () => {
                         </p>
                     </div>
                 ) : (
-                    /*
-                     * LOCATION FOLDERS
-                     */
                     Object.entries(groupedPhotos).map(
                         ([location, locationPhotos]) => (
                             <div
                                 key={location}
                                 style={{
-                                    marginBottom: "55px"
+                                    marginBottom: "55px",
                                 }}
                             >
-                                {/* Folder Header */}
                                 <div
                                     style={{
                                         display: "flex",
@@ -287,29 +259,25 @@ const AllPhotos = () => {
                                         background: "white",
                                         borderRadius: "18px",
                                         boxShadow:
-                                            "0 6px 20px rgba(0,0,0,0.06)"
+                                            "0 6px 20px rgba(0,0,0,0.06)",
                                     }}
                                 >
-                                    {/* Folder Icon */}
                                     <div
                                         style={{
                                             width: "58px",
                                             height: "58px",
                                             borderRadius: "15px",
-                                            background:
-                                                "#fff4e8",
+                                            background: "#fff4e8",
                                             display: "flex",
                                             alignItems: "center",
-                                            justifyContent:
-                                                "center",
+                                            justifyContent: "center",
                                             fontSize: "32px",
-                                            flexShrink: 0
+                                            flexShrink: 0,
                                         }}
                                     >
                                         📁
                                     </div>
 
-                                    {/* Folder Information */}
                                     <div>
                                         <h2
                                             style={{
@@ -317,7 +285,7 @@ const AllPhotos = () => {
                                                 fontSize: "25px",
                                                 color: "#111827",
                                                 textTransform:
-                                                    "capitalize"
+                                                    "capitalize",
                                             }}
                                         >
                                             {location}
@@ -325,28 +293,25 @@ const AllPhotos = () => {
 
                                         <p
                                             style={{
-                                                margin:
-                                                    "5px 0 0",
+                                                margin: "5px 0 0",
                                                 color: "#6b7280",
-                                                fontSize: "15px"
+                                                fontSize: "15px",
                                             }}
                                         >
                                             {locationPhotos.length}{" "}
-                                            {locationPhotos.length ===
-                                            1
+                                            {locationPhotos.length === 1
                                                 ? "photo"
                                                 : "photos"}
                                         </p>
                                     </div>
                                 </div>
 
-                                {/* Photos inside Location Folder */}
                                 <div
                                     style={{
                                         display: "grid",
                                         gridTemplateColumns:
                                             "repeat(auto-fill, minmax(280px, 1fr))",
-                                        gap: "28px"
+                                        gap: "28px",
                                     }}
                                 >
                                     {locationPhotos.map(
@@ -354,67 +319,51 @@ const AllPhotos = () => {
                                             <div
                                                 key={`${photo.tripId || "trip"}-${photo.photoNumber || "photo"}-${index}`}
                                                 style={{
-                                                    background:
-                                                        "white",
-                                                    borderRadius:
-                                                        "18px",
-                                                    overflow:
-                                                        "hidden",
+                                                    background: "white",
+                                                    borderRadius: "18px",
+                                                    overflow: "hidden",
                                                     boxShadow:
                                                         "0 8px 25px rgba(0,0,0,0.08)",
                                                     transition:
-                                                        "transform 0.2s ease, box-shadow 0.2s ease"
+                                                        "transform 0.2s ease, box-shadow 0.2s ease",
                                                 }}
-                                                onMouseEnter={(
-                                                    e
-                                                ) => {
+                                                onMouseEnter={(e) => {
                                                     e.currentTarget.style.transform =
                                                         "translateY(-5px)";
                                                     e.currentTarget.style.boxShadow =
                                                         "0 12px 30px rgba(0,0,0,0.12)";
                                                 }}
-                                                onMouseLeave={(
-                                                    e
-                                                ) => {
+                                                onMouseLeave={(e) => {
                                                     e.currentTarget.style.transform =
                                                         "translateY(0)";
                                                     e.currentTarget.style.boxShadow =
                                                         "0 8px 25px rgba(0,0,0,0.08)";
                                                 }}
                                             >
-                                                {/* Photo */}
                                                 <img
-                                                    src={
-                                                        photo.url
-                                                    }
+                                                    src={photo.url}
                                                     alt={`${photo.tripTitle || "Trip"} travel memory`}
                                                     style={{
                                                         width: "100%",
                                                         height: "230px",
-                                                        objectFit:
-                                                            "cover",
-                                                        display:
-                                                            "block"
+                                                        objectFit: "cover",
+                                                        display: "block",
                                                     }}
                                                 />
 
-                                                {/* Photo Details */}
                                                 <div
                                                     style={{
-                                                        padding:
-                                                            "18px"
+                                                        padding: "18px",
                                                     }}
                                                 >
                                                     <h3
                                                         style={{
                                                             margin:
                                                                 "0 0 8px 0",
-                                                            fontSize:
-                                                                "20px",
-                                                            color:
-                                                                "#111827",
+                                                            fontSize: "20px",
+                                                            color: "#111827",
                                                             textTransform:
-                                                                "capitalize"
+                                                                "capitalize",
                                                         }}
                                                     >
                                                         {photo.tripTitle ||
@@ -424,10 +373,8 @@ const AllPhotos = () => {
                                                     <p
                                                         style={{
                                                             margin: 0,
-                                                            color:
-                                                                "#6b7280",
-                                                            fontSize:
-                                                                "15px"
+                                                            color: "#6b7280",
+                                                            fontSize: "15px",
                                                         }}
                                                     >
                                                         📍{" "}

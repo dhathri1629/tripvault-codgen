@@ -5,6 +5,8 @@ import { useNavigate } from "react-router-dom";
 import "../styles/hero.css";
 import { toast } from "react-toastify";
 
+const API = "https://tripvault-codgen.onrender.com";
+
 function Hero() {
     const navigate = useNavigate();
     const fileInputRef = useRef(null);
@@ -23,8 +25,7 @@ function Hero() {
                 setLoadingTrips(true);
                 setTripError("");
 
-                const token =
-                    localStorage.getItem("token");
+                const token = localStorage.getItem("token");
 
                 if (!token) {
                     setTripError(
@@ -34,18 +35,16 @@ function Hero() {
                 }
 
                 const response = await fetch(
-                    "http://localhost:5000/api/trips",
+                    `${API}/api/trips`,
                     {
                         method: "GET",
                         headers: {
-                            Authorization:
-                                `Bearer ${token}`,
+                            Authorization: `Bearer ${token}`,
                         },
                     }
                 );
 
-                const data =
-                    await response.json();
+                const data = await response.json();
 
                 if (!response.ok) {
                     throw new Error(
@@ -57,9 +56,8 @@ function Hero() {
                 setTrips(
                     Array.isArray(data)
                         ? data
-                        : []
+                        : data.trips || []
                 );
-
             } catch (error) {
                 console.error(
                     "GET TRIPS ERROR:",
@@ -70,7 +68,6 @@ function Hero() {
                     error.message ||
                     "Unable to load trips. Please try again."
                 );
-
             } finally {
                 setLoadingTrips(false);
             }
@@ -97,9 +94,7 @@ function Hero() {
         }
 
         if (trips.length === 1) {
-            setSelectedTripId(
-                trips[0]._id
-            );
+            setSelectedTripId(trips[0]._id);
 
             setTimeout(() => {
                 fileInputRef.current?.click();
@@ -121,8 +116,7 @@ function Hero() {
     };
 
     const handlePhotoUpload = async (event) => {
-        const file =
-            event.target.files?.[0];
+        const file = event.target.files?.[0];
 
         if (!file) {
             return;
@@ -140,37 +134,30 @@ function Hero() {
         try {
             setUploading(true);
 
-            const token =
-                localStorage.getItem("token");
+            const token = localStorage.getItem("token");
 
             if (!token) {
                 toast.error("Please login first.");
                 return;
             }
 
-            const formData =
-                new FormData();
+            const formData = new FormData();
 
-            formData.append(
-                "image",
-                file
+            formData.append("image", file);
+
+            const response = await fetch(
+                `${API}/api/trips/${selectedTripId}/upload`,
+                {
+                    method: "POST",
+                    headers: {
+                        Authorization:
+                            `Bearer ${token}`,
+                    },
+                    body: formData,
+                }
             );
 
-            const response =
-                await fetch(
-                    `http://localhost:5000/api/trips/${selectedTripId}/upload`,
-                    {
-                        method: "POST",
-                        headers: {
-                            Authorization:
-                                `Bearer ${token}`,
-                        },
-                        body: formData,
-                    }
-                );
-
-            const data =
-                await response.json();
+            const data = await response.json();
 
             console.log(
                 "Upload response:",
@@ -241,9 +228,7 @@ function Hero() {
                         <button
                             className="primary-btn"
                             onClick={() =>
-                                navigate(
-                                    "/add-trip"
-                                )
+                                navigate("/add-trip")
                             }
                         >
                             <FaPlus />
@@ -252,9 +237,7 @@ function Hero() {
 
                         <button
                             className="secondary-btn"
-                            onClick={
-                                handleUploadClick
-                            }
+                            onClick={handleUploadClick}
                             disabled={
                                 uploading ||
                                 loadingTrips
@@ -300,9 +283,7 @@ function Hero() {
                         <button
                             className="trip-selector-close"
                             onClick={() =>
-                                setShowTripSelector(
-                                    false
-                                )
+                                setShowTripSelector(false)
                             }
                         >
                             <FaTimes />
@@ -320,32 +301,28 @@ function Hero() {
 
                         <div className="trip-selector-list">
 
-                            {trips.map(
-                                (trip) => (
-                                    <button
-                                        key={
+                            {trips.map((trip) => (
+                                <button
+                                    key={trip._id}
+                                    className="trip-selector-item"
+                                    onClick={() =>
+                                        handleTripSelect(
                                             trip._id
-                                        }
-                                        className="trip-selector-item"
-                                        onClick={() =>
-                                            handleTripSelect(
-                                                trip._id
-                                            )
-                                        }
-                                    >
-                                        <strong>
-                                            {trip.title ||
-                                                "Untitled Trip"}
-                                        </strong>
+                                        )
+                                    }
+                                >
+                                    <strong>
+                                        {trip.title ||
+                                            "Untitled Trip"}
+                                    </strong>
 
-                                        <span>
-                                            {trip.location ||
-                                                trip.destination ||
-                                                "Unknown location"}
-                                        </span>
-                                    </button>
-                                )
-                            )}
+                                    <span>
+                                        {trip.location ||
+                                            trip.destination ||
+                                            "Unknown location"}
+                                    </span>
+                                </button>
+                            ))}
 
                         </div>
 
@@ -358,4 +335,3 @@ function Hero() {
 }
 
 export default Hero;
-

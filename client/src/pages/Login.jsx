@@ -4,6 +4,8 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import "../styles/login.css";
 
+const API = "https://tripvault-codgen.onrender.com/api/auth";
+
 function Login() {
   const navigate = useNavigate();
 
@@ -24,7 +26,7 @@ function Login() {
 
     try {
       const res = await axios.post(
-        "http://localhost:5000/api/auth/login",
+        `${API}/login`,
         formData
       );
 
@@ -33,7 +35,7 @@ function Login() {
 
       // Get logged-in user information
       const userRes = await axios.get(
-        "http://localhost:5000/api/auth/me",
+        `${API}/me`,
         {
           headers: {
             Authorization: `Bearer ${res.data.token}`,
