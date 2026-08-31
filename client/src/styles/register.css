@@ -1,0 +1,91 @@
+
+.register-page {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30px 16px;
+  background:
+    linear-gradient(120deg, rgba(39,28,20,.68), rgba(86,51,31,.34)),
+    url("https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=1920&q=85") center/cover;
+}
+
+.register-card {
+  width: min(470px, 100%);
+  padding: 38px 40px;
+  background: rgba(255,255,255,.95);
+  border: 1px solid rgba(255,255,255,.8);
+  border-radius: 24px;
+  box-shadow: 0 28px 70px rgba(0,0,0,.24);
+}
+
+.register-header { text-align: center; margin-bottom: 26px; }
+
+.register-logo {
+  width: 58px;
+  height: 58px;
+  margin: 0 auto 13px;
+  display: grid;
+  place-items: center;
+  background: var(--brand-soft);
+  color: var(--brand-dark);
+  border-radius: 16px;
+  font-size: 25px;
+}
+
+.register-header h1 {
+  margin: 0;
+  color: var(--ink);
+  font-size: 29px;
+}
+
+.register-header p { margin: 7px 0 0; color: var(--muted); font-size: 14px; }
+
+.register-form { display: flex; flex-direction: column; gap: 16px; }
+.register-group { display: flex; flex-direction: column; gap: 7px; }
+.register-group label { color: #51463e; font-size: 13px; font-weight: 700; }
+
+.register-group input {
+  width: 100%;
+  padding: 13px 14px;
+  border: 1px solid #ded5cd;
+  border-radius: 11px;
+  background: #fffdfb;
+  color: var(--ink);
+  outline: none;
+}
+
+.register-group input:focus {
+  border-color: #c79a6e;
+  box-shadow: 0 0 0 4px rgba(199,154,110,.12);
+}
+
+.register-button {
+  width: 100%;
+  min-height: 48px;
+  margin-top: 4px;
+  border: 0;
+  border-radius: 11px;
+  background: var(--brand);
+  color: #fff;
+  font-weight: 700;
+  cursor: pointer;
+  transition: .2s ease;
+}
+
+.register-button:hover { background: var(--brand-dark); transform: translateY(-1px); }
+.register-button:disabled { opacity: .65; cursor: wait; transform: none; }
+
+.register-login {
+  margin-top: 22px;
+  text-align: center;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.register-login a { color: var(--brand-dark); font-weight: 700; text-decoration: none; }
+.register-login a:hover { text-decoration: underline; }
+
+@media (max-width: 500px) {
+  .register-card { padding: 28px 20px; border-radius: 19px; }
+}

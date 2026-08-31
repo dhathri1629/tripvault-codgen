@@ -1,0 +1,87 @@
+
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap");
+
+:root {
+  --bg: #f7f3ed;
+  --surface: #ffffff;
+  --surface-soft: #fbf8f4;
+  --ink: #28231f;
+  --muted: #756d66;
+  --line: #e9e0d7;
+  --brand: #b86f43;
+  --brand-dark: #8e4f2e;
+  --brand-soft: #f4e5d9;
+  --danger: #c84b4b;
+  --success: #3e8565;
+  font-family: "DM Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: var(--ink);
+  background: var(--bg);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background:
+    radial-gradient(circle at 10% 0%, rgba(184,111,67,.08), transparent 30rem),
+    var(--bg);
+  color: var(--ink);
+}
+
+button, input, textarea, select { font: inherit; }
+
+button { -webkit-tap-highlight-color: transparent; }
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 3px solid rgba(184,111,67,.28);
+  outline-offset: 2px;
+}
+
+a { color: inherit; }
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+  margin: 0;
+}
+
+h1, h2, h3, h4 {
+  font-family: "Playfair Display", Georgia, serif;
+  color: var(--ink);
+}
+
+p { line-height: 1.65; }
+
+::selection {
+  background: var(--brand-soft);
+  color: var(--brand-dark);
+}
+
+.Toastify__toast-container {
+  width: min(380px, calc(100vw - 32px));
+}
+
+.Toastify__toast {
+  border-radius: 14px;
+  box-shadow: 0 14px 40px rgba(50,35,24,.16);
+  font-family: "DM Sans", sans-serif;
+  font-size: 14px;
+}
+
+@media (max-width: 600px) {
+  .Toastify__toast-container {
+    left: 16px;
+    right: 16px;
+    width: auto;
+  }
+}

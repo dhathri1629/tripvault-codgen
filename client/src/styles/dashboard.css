@@ -1,0 +1,12 @@
+
+.dashboard {
+  min-height: 100vh;
+  background: transparent;
+  padding-bottom: 60px;
+}
+
+.dashboard .hero,
+.dashboard .stats-container,
+.dashboard .trip-list {
+  position: relative;
+}
