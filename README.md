@@ -1,25 +1,10 @@
 # ✈️ TripVault
 
-A full-stack travel memory management web application built during the CodGen Full Stack MERN Virtual Internship.
-
-## 🌍 Live Application
-
-**Frontend:**  
-https://tripvault-codgen-1.onrender.com
-
-**Backend API:**  
-https://tripvault-codgen.onrender.com
-
-**GitHub Repository:**  
-https://github.com/dhathri1629/tripvault-codgen
-
----
+A full-stack travel memory management web application.
 
 ## 📌 Project Overview
 
-TripVault is a travel memory management application that allows users to create and manage their trips, upload travel photos, maintain public profiles, and share their travel experiences.
-
-The project was developed progressively across four weeks, starting with authentication and trip management and ending with a responsive, fully deployed application.
+TripVault is a travel memory management application that allows users to create and manage trips, upload travel photos, maintain public profiles, and share travel experiences.
 
 ---
 
@@ -29,7 +14,7 @@ The project was developed progressively across four weeks, starting with authent
 
 - User registration
 - User login
-- JWT-based authentication
+- JWT authentication
 - Protected routes
 - User session management
 - Logout functionality
@@ -43,7 +28,6 @@ The project was developed progressively across four weeks, starting with authent
 - Edit trips
 - Delete trips
 - Trip ownership protection
-- Destination and travel information
 - Favorites / likes functionality
 - Dashboard for managing trips
 
@@ -59,7 +43,6 @@ The project was developed progressively across four weeks, starting with authent
 - Unique usernames
 - User bios
 - Public trip listings
-- Public profiles accessible without login
 
 ## Week 4 — UI Polish & Deployment
 
@@ -70,24 +53,33 @@ The project was developed progressively across four weeks, starting with authent
 - Responsive UI
 - Mobile-friendly layouts
 - Responsive navigation
-- Hamburger menu for mobile screens
+- Hamburger menu
 - Consistent styling
 - Navbar with navigation and logout
-- Footer with project information
+- Footer
 - Backend deployed on Render
 - Frontend deployed on Render
 - MongoDB Atlas connected
 - Cloudinary connected
-- Production environment variables configured
-- End-to-end testing on the live application
-- Live application URL added to project documentation
+- Environment variables configured
+- End-to-end testing completed
+
+---
+
+# 📊 Development Progress
+
+| Week | Status |
+|------|--------|
+| Week 1 | ✅ Completed |
+| Week 2 | ✅ Completed |
+| Week 3 | ✅ Completed |
+| Week 4 | ✅ Completed |
 
 ---
 
 # 🛠️ Tech Stack
 
 ### Frontend
-
 - React
 - Vite
 - React Router
@@ -98,7 +90,6 @@ The project was developed progressively across four weeks, starting with authent
 - CSS
 
 ### Backend
-
 - Node.js
 - Express.js
 - MongoDB
@@ -108,76 +99,42 @@ The project was developed progressively across four weeks, starting with authent
 - Multer
 - Cloudinary
 
-### Deployment & Services
-
+### Deployment
+- GitHub
+- Render
 - MongoDB Atlas
 - Cloudinary
-- Render
-- GitHub
 
 ---
 
-# 🏗️ Project Structure
+# 🌍 Live Application
 
-```text
-TripVault-Week4/
-│
-├── client/
-│   ├── public/
-│   └── src/
-│       ├── assets/
-│       ├── components/
-│       │   ├── Hero.jsx
-│       │   ├── Navbar.jsx
-│       │   ├── StatsCard.jsx
-│       │   ├── TripCard.jsx
-│       │   └── TripList.jsx
-│       │
-│       ├── pages/
-│       │   ├── AddTrip.jsx
-│       │   ├── AllPhotos.jsx
-│       │   ├── Dashboard.jsx
-│       │   ├── EditTrip.jsx
-│       │   ├── Favorites.jsx
-│       │   ├── Login.jsx
-│       │   ├── PublicProfile.jsx
-│       │   ├── Register.jsx
-│       │   └── TripDetails.jsx
-│       │
-│       ├── services/
-│       │   ├── photoService.js
-│       │   └── tripService.js
-│       │
-│       ├── styles/
-│       ├── App.jsx
-│       └── main.jsx
-│
-├── server/
-│   ├── config/
-│   │   ├── cloudinary.js
-│   │   └── db.js
-│   │
-│   ├── controllers/
-│   │   ├── authController.js
-│   │   ├── profileController.js
-│   │   └── tripController.js
-│   │
-│   ├── middleware/
-│   │   ├── authMiddleware.js
-│   │   └── uploadMiddleware.js
-│   │
-│   ├── models/
-│   │   ├── Trip.js
-│   │   └── User.js
-│   │
-│   ├── routes/
-│   │   ├── authRoutes.js
-│   │   ├── photoRoutes.js
-│   │   ├── profileRoutes.js
-│   │   └── tripRoutes.js
-│   │
-│   └── index.js
-│
-├── package.json
-├── README.md
-└── .gitignore
+Frontend:
+
+https://tripvault-codgen-1.onrender.com
+
+Backend:
+
+https://tripvault-codgen.onrender.com
+
+GitHub:
+
+https://github.com/dhathri1629/tripvault-codgen
+
+---
+
+# 🎓 Internship Project
+
+**Program:** CodGen Full Stack MERN Virtual Internship
+
+**Project:** TripVault
+
+**Duration:** 4 Weeks
+
+**Final Status:** ✅ Week 4 Completed
+
+---
+
+# 🏆 Final Result
+
+TripVault is a complete full-stack travel memory application with authentication, trip CRUD operations, photo uploads, public profiles, responsive UI, error handling, and live production deployment.
