@@ -1,590 +1,183 @@
-# TripVault 🚀
+# ✈️ TripVault
 
-TripVault is a full-stack travel memory journal application where users can create, store, and manage their travel experiences.
+A full-stack travel memory management web application built during the CodGen Full Stack MERN Virtual Internship.
+
+## 🌍 Live Application
+
+**Frontend:**  
+https://tripvault-codgen-1.onrender.com
+
+**Backend API:**  
+https://tripvault-codgen.onrender.com
+
+**GitHub Repository:**  
+https://github.com/dhathri1629/tripvault-codgen
+
+---
 
 ## 📌 Project Overview
 
-TripVault allows users to securely log their trips, save travel details, upload travel photos, manage their memories, like trips, save favorite trips, and share public travel profiles.
+TripVault is a travel memory management application that allows users to create and manage their trips, upload travel photos, maintain public profiles, and share their travel experiences.
 
-This project is developed as part of the CodGen Virtual Internship Program.
-
----
-
-## ✅ Week 1 Completed Features
-
-* Backend project setup using Node.js and Express.js
-* MongoDB Atlas database integration
-* Environment variable configuration
-* User signup and login authentication
-* Password encryption using bcryptjs
-* JWT-based authentication
-* Protected API routes
-* Create travel memories API
-* Fetch user-specific trips API
+The project was developed progressively across four weeks, starting with authentication and trip management and ending with a responsive, fully deployed application.
 
 ---
 
-## ✅ Week 2 Completed Features
+# 🚀 Features
 
-### 🧳 Trip Management
+## Week 1 — Authentication
 
-* Create new trips
-* View all user trips
-* View individual trip details
-* Edit trip details
-* Delete trips
-* Store trip title
-* Store destination
-* Store start date
-* Store end date
-* Store trip description
-* Add trip ratings from 1 to 5 stars
+- User registration
+- User login
+- JWT-based authentication
+- Protected routes
+- User session management
+- Logout functionality
+- Password-protected accounts
 
-### ❤️ Trip Interaction
+## Week 2 — Trip Management
 
-* Like trips
-* Unlike trips
-* Persistent like status
-* Favorites functionality
-* User-specific trip management
+- Create trips
+- View trips
+- View individual trip details
+- Edit trips
+- Delete trips
+- Trip ownership protection
+- Destination and travel information
+- Favorites / likes functionality
+- Dashboard for managing trips
 
-### 🔐 Protected Operations
+## Week 3 — Photos & Public Profiles
 
-Trip creation, editing, deletion, liking, and other private operations are protected using JWT authentication.
+- Upload travel photos
+- Cloudinary image storage
+- Cover images for trips
+- Multiple photos per trip
+- Photo gallery
+- All Photos page
+- Public user profiles
+- Unique usernames
+- User bios
+- Public trip listings
+- Public profiles accessible without login
 
----
+## Week 4 — UI Polish & Deployment
 
-## ✅ Week 3 Completed Features
-
-### 📸 Photo Management
-
-* Cloudinary integration for travel photo storage
-* Upload multiple photos to a trip
-* Upload up to 10 photos in one request
-* JPG image support
-* JPEG image support
-* PNG image support
-* WEBP image support
-* Maximum 5 MB per image
-* Display uploaded trip photos
-* Display existing photos while editing a trip
-* Add additional photos to an existing trip
-* Preview newly selected photos before uploading
-* Remove selected photos before uploading
-* Delete existing trip photos
-* Automatic cover image selection
-* Display photo count on trip cards
-* Location-based Cloudinary folders
-
-Example Cloudinary folder structure:
-
-```text
-tripvault/goa
-tripvault/kerala
-tripvault/mysore
-tripvault/hyderabad
-```
+- Loading states
+- User-friendly error handling
+- Toast notifications
+- Empty states
+- Responsive UI
+- Mobile-friendly layouts
+- Responsive navigation
+- Hamburger menu for mobile screens
+- Consistent styling
+- Navbar with navigation and logout
+- Footer with project information
+- Backend deployed on Render
+- Frontend deployed on Render
+- MongoDB Atlas connected
+- Cloudinary connected
+- Production environment variables configured
+- End-to-end testing on the live application
+- Live application URL added to project documentation
 
 ---
 
-### 👤 Public Profiles
-
-* Public user profile pages
-* Username-based profile URLs
-* Public profiles accessible without authentication
-* Display user's name
-* Display username
-* Display user bio
-* Display number of trips
-* Display user's public trips
-* Display travel memories
-* Display uploaded trip photos
-
-Example public profile:
-
-```text
-http://localhost:5173/profile/vamshi
-```
-
----
-
-### 🖼️ Trip Cards
-
-Trip cards display:
-
-* Trip title
-* Destination
-* Trip date
-* Description
-* Cover image
-* Number of photos
-* Like button
-* Edit button
-* Delete button
-
----
-
-### ✏️ Edit Trip
-
-The Edit Trip page supports:
-
-* Loading existing trip information
-* Editing trip title
-* Editing destination
-* Editing start date
-* Editing end date
-* Editing description
-* Editing rating
-* Viewing existing photos
-* Adding new photos
-* Previewing new photos
-* Removing selected new photos
-* Saving updated trip information
-
----
-
-## ✅ Week 4 Completed Features
-
-### 🎨 Responsive UI & UX
-
-* Responsive desktop, tablet, and mobile layouts
-* Mobile navigation menu
-* Responsive dashboard statistics
-* Responsive trip card grid
-* Responsive trip selection modal
-* Mobile-friendly forms and photo previews
-* Accessible keyboard focus states
-* Consistent TripVault design system with warm travel-journal styling
-
-### 🔔 User Feedback & Error Handling
-
-* Toast notifications for successful and failed operations
-* Login and registration feedback
-* Trip creation, update, and deletion feedback
-* Photo upload and deletion feedback
-* Like/unlike error feedback
-* Loading states for dashboard statistics and trips
-* Empty states for users with no trips
-* Retry controls for failed trip/stat requests
-* Date validation before trip creation
-* Image type and 5 MB file-size validation
-* Maximum 10 photos per upload selection
-* Duplicate trip submissions prevented while saving
-
----
-
-## 🛠️ Tech Stack
+# 🛠️ Tech Stack
 
 ### Frontend
 
-* React.js
-* React Router
-* Axios
-* React Icons
-* CSS
-* React Toastify
+- React
+- Vite
+- React Router
+- Axios
+- Framer Motion
+- React Icons
+- React Toastify
+- CSS
 
 ### Backend
 
-* Node.js
-* Express.js
-* MongoDB Atlas
-* Mongoose
-* JSON Web Token (JWT)
-* bcryptjs
-* Multer
-* Cloudinary
-* multer-storage-cloudinary
-* CORS
-* dotenv
+- Node.js
+- Express.js
+- MongoDB
+- Mongoose
+- JWT
+- bcrypt
+- Multer
+- Cloudinary
 
-### Tools Used
+### Deployment & Services
 
-* Visual Studio Code
-* PowerShell
-* Postman
-* Git
-* GitHub
-* Cloudinary
-* MongoDB Atlas
+- MongoDB Atlas
+- Cloudinary
+- Render
+- GitHub
 
 ---
 
-## 📂 Project Structure
+# 🏗️ Project Structure
 
 ```text
-TripVault
+TripVault-Week4/
 │
-├── client
-│   ├── src
-│   │   ├── components
-│   │   │   ├── Navbar.jsx
-│   │   │   └── TripCard.jsx
-│   │   │
-│   │   ├── pages
-│   │   │   ├── AddTrip.jsx
-│   │   │   ├── AllPhotos.jsx
-│   │   │   ├── Dashboard.jsx
-│   │   │   ├── EditTrip.jsx
-│   │   │   ├── Favorites.jsx
-│   │   │   ├── Login.jsx
-│   │   │   ├── PublicProfile.jsx
-│   │   │   └── Register.jsx
-│   │   │
-│   │   ├── services
-│   │   │   ├── photoService.js
-│   │   │   └── tripService.js
-│   │   │
-│   │   └── styles
-│   │
-│   └── package.json
+├── client/
+│   ├── public/
+│   └── src/
+│       ├── assets/
+│       ├── components/
+│       │   ├── Hero.jsx
+│       │   ├── Navbar.jsx
+│       │   ├── StatsCard.jsx
+│       │   ├── TripCard.jsx
+│       │   └── TripList.jsx
+│       │
+│       ├── pages/
+│       │   ├── AddTrip.jsx
+│       │   ├── AllPhotos.jsx
+│       │   ├── Dashboard.jsx
+│       │   ├── EditTrip.jsx
+│       │   ├── Favorites.jsx
+│       │   ├── Login.jsx
+│       │   ├── PublicProfile.jsx
+│       │   ├── Register.jsx
+│       │   └── TripDetails.jsx
+│       │
+│       ├── services/
+│       │   ├── photoService.js
+│       │   └── tripService.js
+│       │
+│       ├── styles/
+│       ├── App.jsx
+│       └── main.jsx
 │
-├── server
-│   ├── config
+├── server/
+│   ├── config/
 │   │   ├── cloudinary.js
 │   │   └── db.js
 │   │
-│   ├── controllers
+│   ├── controllers/
 │   │   ├── authController.js
 │   │   ├── profileController.js
 │   │   └── tripController.js
 │   │
-│   ├── middleware
-│   │   └── authMiddleware.js
+│   ├── middleware/
+│   │   ├── authMiddleware.js
+│   │   └── uploadMiddleware.js
 │   │
-│   ├── models
+│   ├── models/
 │   │   ├── Trip.js
 │   │   └── User.js
 │   │
-│   ├── routes
+│   ├── routes/
 │   │   ├── authRoutes.js
 │   │   ├── photoRoutes.js
 │   │   ├── profileRoutes.js
 │   │   └── tripRoutes.js
 │   │
-│   ├── .env
-│   ├── index.js
-│   └── package.json
+│   └── index.js
 │
-└── README.md
-```
-
----
-
-## 🔐 Authentication
-
-TripVault uses JWT-based authentication.
-
-After successful login, the server generates a JWT token.
-
-Protected requests send the token using:
-
-```text
-Authorization: Bearer <token>
-```
-
-Passwords are encrypted using bcryptjs before being stored in MongoDB.
-
----
-
-## 👤 User Management
-
-Each user has:
-
-* Name
-* Username
-* Email
-* Password
-* Bio
-* Account creation date
-
-Usernames are stored in lowercase and are unique.
-
-The application automatically generates a username when one is not provided during registration.
-
----
-
-## 🧳 Trip Management API
-
-### Create Trip
-
-```text
-POST /api/trips
-```
-
-### Get All Trips
-
-```text
-GET /api/trips
-```
-
-### Get Single Trip
-
-```text
-GET /api/trips/:id
-```
-
-### Update Trip
-
-```text
-PUT /api/trips/:id
-```
-
-### Like / Unlike Trip
-
-```text
-PUT /api/trips/:id/like
-```
-
-### Delete Trip
-
-```text
-DELETE /api/trips/:id
-```
-
----
-
-## 📸 Photo API
-
-### Upload Trip Photos
-
-```text
-POST /api/photos/:tripId
-```
-
-The request uses multipart form data with the field:
-
-```text
-photos
-```
-
-### Delete Trip Photo
-
-```text
-DELETE /api/photos/:tripId
-```
-
-Photos are stored using Cloudinary and their URLs are stored with the trip information.
-
----
-
-## 👤 Public Profile API
-
-### Get Public Profile
-
-```text
-GET /api/users/:username/profile
-```
-
-Example:
-
-```text
-GET /api/users/vamshi/profile
-```
-
-This route does not require authentication.
-
-The response contains:
-
-* Public user information
-* Username
-* Bio
-* Account creation date
-* User's trips
-* Trip photos
-* Trip details
-
----
-
-## ☁️ Cloudinary Integration
-
-TripVault uses Cloudinary to store uploaded travel photos.
-
-Instead of storing image files directly inside the server, images are uploaded to Cloudinary.
-
-The application stores the resulting Cloudinary URLs with the corresponding trip.
-
-### Supported Formats
-
-```text
-JPG
-JPEG
-PNG
-WEBP
-```
-
-### File Size
-
-```text
-Maximum 5 MB per image
-```
-
-### Maximum Upload
-
-```text
-10 photos per upload request
-```
-
----
-
-## 🧪 Testing Completed
-
-The following features have been tested during development.
-
-### Authentication Testing
-
-* User registration
-* User login
-* JWT token generation
-* Protected routes
-* Invalid authentication handling
-
-### Trip Testing
-
-* Create trip
-* View trips
-* View individual trip
-* Edit trip
-* Delete trip
-* Rating
-* Like trip
-* Unlike trip
-* Favorites
-
-### Photo Testing
-
-* Upload photo
-* Upload multiple photos
-* Display uploaded photos
-* Display existing photos
-* Add more photos
-* Preview selected photos
-* Remove selected photos
-* Delete existing photos
-* Cover image
-* Photo count
-
-### Profile Testing
-
-* Public profile
-* Username lookup
-* Profile information
-* Public trips
-* Public photos
-
----
-
-## ▶️ How to Run the Project
-
-### 1. Clone the Repository
-
-```bash
-git clone <your-github-repository-url>
-```
-
-### 2. Open the Project
-
-```bash
-cd tripvault-codgen
-```
-
-### 3. Install Backend Dependencies
-
-```bash
-cd server
-npm install
-```
-
-### 4. Configure Environment Variables
-
-Create a `.env` file inside the `server` folder.
-
-Example:
-
-```env
-MONGO_URI=your_mongodb_connection_string
-JWT_SECRET=your_jwt_secret
-CLOUDINARY_CLOUD_NAME=your_cloudinary_cloud_name
-CLOUDINARY_API_KEY=your_cloudinary_api_key
-CLOUDINARY_API_SECRET=your_cloudinary_api_secret
-PORT=5000
-```
-
-Do not commit the actual `.env` file or secret values to GitHub.
-
-### 5. Start Backend
-
-```bash
-npm run dev
-```
-
-The backend runs on:
-
-```text
-http://localhost:5000
-```
-
-### 6. Install Frontend Dependencies
-
-Open another terminal:
-
-```bash
-cd client
-npm install
-```
-
-### 7. Start Frontend
-
-```bash
-npm run dev
-```
-
-Open the frontend URL shown by Vite in the terminal.
-
----
-
-## 🌐 Main Application Routes
-
-```text
-/login
-/register
-/dashboard
-/add-trip
-/edit-trip/:id
-/favorites
-/all-photos
-/profile/:username
-```
-
-Example:
-
-```text
-/profile/vamshi
-```
-
----
-
-## 📊 Development Progress
-
-| Week   | Status      |
-| ------ | ----------- |
-| Week 1 | ✅ Completed |
-| Week 2 | ✅ Completed |
-| Week 3 | ✅ Completed |
-| Week 4 | ✅ Completed |
-
----
-
-## 🚀 Current Status
-
-TripVault currently supports authentication, trip management, photo management, favorites, likes, public travel profiles, responsive UI, validation, loading states, error handling, and toast notifications.
-
-Week 3 development and testing have been completed successfully.
-
-Week 4 responsive UI, validation, loading states, error handling, and toast-based user feedback have been completed.
-
----
-
-## 👩‍💻 Internship Project
-
-TripVault is being developed as part of the **CodGen Virtual Internship Program**.
+├── package.json
+├── README.md
+└── .gitignore
